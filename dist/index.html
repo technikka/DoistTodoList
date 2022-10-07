@@ -4,9 +4,65 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Doer</title>
+  <link rel="stylesheet" href="../src/style.css">
   <script src="main.js"></script>
 </head>
 <body>
+  <div id="content">
+    <header>
+      <!-- search bar -->
+      <button>+</button>
+    </header>
+    <div class="add-item-container">
+      <form action="">
+        <fieldset>
+          <legend>Add an item to your list</legend>
+
+          <div>
+            <label for="title">Title</label>
+            <input type="text" name="title">
+          </div>
+  
+          <div>
+            <label for="description">Description</label>
+            <textarea name="description" id="" cols="30" rows="8"></textarea>
+          </div>
+  
+          <div>
+            <label for="dueDate">Due</label>
+            <input type="date" name="dueDate">
+          </div>
+  
+          <div>
+            <label for="priorityLevel">Priority</label>
+            <select name="priorityLevel" id="priorityLevel">
+              <option value="green">Low priority</option>
+              <option value="yellow">Normal</option>
+              <option value="orange">Somewhat priority</option>
+              <option value="red">High priority</option>
+            </select>
+          </div>
+  
+          <div>
+            <label for="notes">Notes</label>
+            <textarea name="notes" id="" cols="30" rows="5"></textarea>
+          </div>
+  
+          <div>
+            <label for="category">Select Category</label>
+            <!-- dynamically pull from user defined categories -->
+            <select name="categories" id="categories">
+              <option value="category1">Category1</option>
+              <option value="category2">Category2</option>
+              <option value="category3">Category3</option>
+            </select>
+          </div>
+        </fieldset>
+
+      </form>
+    </div>
+
+  </div>
   <script src="main.js"></script>
 </body>
 </html>
