@@ -27,6 +27,11 @@ const createForm = () => {
   fieldset.appendChild(_createTextArea({ textContent: 'Notes', for: 'notes'}, { "cols": "30", "rows": "8"}));
   // add category property input
   fieldset.appendChild(_createSelect({ textContent: 'Category', for: 'category'}, {"User Category": "User Category"}));
+
+  const btn = document.createElement('button');
+  btn.textContent = 'Add';
+  btn.classList.add('btn-add-item');
+  fieldset.appendChild(btn);
 }
 
 const _addLabel = (parent, properties) => {
