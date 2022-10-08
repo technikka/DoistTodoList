@@ -22,11 +22,11 @@ const createForm = () => {
   // add dueDate property input
   fieldset.appendChild(_createInput('date', { textContent: 'Due Date', for: 'dueDate'}));
   // add priorityLevel property input
-  fieldset.appendChild(_createSelect({ textContent: 'Priority', for: 'priorityLevel'}, {"green": "Low Priority", "yellow": "Normal Priority", "orange": "Somewhat Priority", "red": "High Priority"}));
+  fieldset.appendChild(_createSelect({ textContent: 'Priority', for: 'priorityLevel'}, {"green": "Low Priority", "yellow": "Normal Priority", "orange": "Somewhat Priority", "red": "High Priority"}, "yellow"));
   // add notes property input
   fieldset.appendChild(_createTextArea({ textContent: 'Notes', for: 'notes'}, { "cols": "30", "rows": "8"}));
   // add category property input
-  fieldset.appendChild(_createSelect({ textContent: 'Category', for: 'category'}, {"User Category": "User Category"}));
+  fieldset.appendChild(_createSelect({ textContent: 'Category', for: 'category'}, {"default": "Default"}, "default"));
 
   const btn = document.createElement('button');
   btn.textContent = 'Add';
@@ -74,7 +74,8 @@ const _createTextArea = (areaLabel, areaProperties) => {
   return container;
 }
 
-const _createSelect = (selectLabel, selectOptions) => {
+// add selectDefault option with name attr to make option.selected = true
+const _createSelect = (selectLabel, selectOptions, selectDefault) => {
   let container = document.createElement('div');
   _addLabel(container, selectLabel);
 
@@ -87,6 +88,9 @@ const _createSelect = (selectLabel, selectOptions) => {
     let option = document.createElement('option');
     option.value = value;
     option.textContent = textContent;
+    if (selectDefault && option.value === selectDefault) {
+      option.selected = true;
+    }
     select.appendChild(option);
   }
 
