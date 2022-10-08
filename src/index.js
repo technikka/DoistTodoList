@@ -1,5 +1,8 @@
-import { todoItem } from './todo-item.js'
+import { createItem } from './todo-item.js'
+import { createForm } from './add-item-form'
 
 const todoItems = [];
 
-let todo = todoItem('Odin TODO project', 'create a todo app', 'orange', Date.now, 'Odin');
+createForm();
+
+// let todo = todoItem('Odin TODO project', 'create a todo app', 'orange', Date.now, 'Odin');

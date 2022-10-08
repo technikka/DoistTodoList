@@ -11,4 +11,9 @@ const todoItem = (title, description, priorityLevel, dueDate, category, notes) =
   return {title, description, priorityLevel, dueDate, category, notes }
 };
 
+// create returns the todoItem
+// const createItem = () => {
+
+// }
+
 export { todoItem }
