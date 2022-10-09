@@ -1,10 +1,68 @@
-#content {
+body {
   font-family: 'Helvetica';
+}
+
+#content {
   display: grid;
 }
 
 header {
   border: 1px solid green;
+  height: 50px;
+  display: grid;
+  grid-template-columns: 1.5fr repeat(3, 1fr);
+  align-content: center;
+  align-items: center;
+  column-gap: 10px;
+}
+
+header input {
+  margin-left: 20px;
+  max-width: 300px;
+}
+
+header span {
+  width: max-content;
+  height: min-content;
+  background-color: #e9e9ed;
+  padding: 10px;
+  align-self: end;
+}
+
+.overview-tab {
+  justify-self: end;
+}
+
+.overview-tab:hover {
+  cursor: pointer;
+}
+
+/* .category-tab {
+  width: max-content;
+  height: min-content;
+} */
+
+.category-tab img {
+  filter: invert(100%);
+  width: min-content;
+  height: min-content;
+  width: 24px;
+  height: auto;
+  vertical-align: bottom;
+
+}
+
+.category-tab:hover {
+  cursor: pointer;
+}
+
+.btn-todoItem-form {
+  width: min-content;
+  padding: 5px 15px;
+}
+
+.btn-todoItem-form:hover {
+  cursor: pointer;
 }
 
 .add-item-container {
