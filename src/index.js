@@ -1,5 +1,7 @@
 import { createForm } from './add-item-form'
 import { setEventListeners } from './event'
+import { createCategoryDropdown } from './controls'
+import { createNewCategoryModal } from './add-category-form'
 
 const todoItems = [];
 
@@ -24,6 +26,8 @@ const _parseStoredItems = () => {
 
 
 createForm();
+createCategoryDropdown();
+createNewCategoryModal();
 
 if (_storedItems().length > 0) {
   _parseStoredItems();

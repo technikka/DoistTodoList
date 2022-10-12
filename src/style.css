@@ -1,9 +1,23 @@
 body {
   font-family: 'Helvetica';
+  margin: 0;
+  height: 100%;
 }
 
 #content {
   display: grid;
+}
+
+#backdrop {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background: #000;
+  opacity: 0%;
+}
+
+#backdrop.show {
+  opacity: 60%;
 }
 
 header {
@@ -49,11 +63,54 @@ header span {
   width: 24px;
   height: auto;
   vertical-align: bottom;
-
 }
 
 .category-tab:hover {
   cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  z-index: 1;
+  background-color: #e9e9ed;
+  border: 1px solid black;
+}
+
+.dropdown-content.show {
+  display: block;
+}
+
+.dropdown-item {
+  display: block;
+  padding: 10px;
+}
+
+.new-category-modal {
+  z-index: 5;
+  border: 1px solid black;
+  position: fixed;
+  top: 0%;
+  left: 50%;
+  transform-origin: center;
+  transform: translate(-50%, -80%);
+  pointer-events: none;
+  opacity: 0%;
+  padding: 10px 20px;
+  background: white;
+
+  transition: top 0.3s, opacity 0.3s;
+}
+
+.new-category-modal.show {
+  opacity: 100%;
+  pointer-events: all;
+  top: 10%;
+}
+
+.new-category-modal input {
+  margin: 0 20px 0 5px;
 }
 
 .btn-todoItem-form {
