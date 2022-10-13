@@ -1,4 +1,4 @@
-import { Event } from './event'
+import { Event, closeOnClickAway } from './event'
 import { createCategory } from './category'
 
 const createNewCategoryModal = () => {
@@ -10,17 +10,19 @@ const createNewCategoryModal = () => {
 
   let label = document.createElement('label');
   label.textContent = 'New Category';
-  label.setAttribute('for', 'category');
+  label.setAttribute('for', 'new-category');
   modal.appendChild(label);
 
   let input = document.createElement('input');
-  input.setAttribute('name', 'category');
+  input.setAttribute('name', 'new-category');
   modal.appendChild(input);
 
   let btn = document.createElement('button');
   btn.textContent = 'create';
   modal.appendChild(btn);
-  Event.add(btn, 'click',  createCategory )
+  Event.add(btn, 'click',  createCategory );
 }
+
+
 
 export { createNewCategoryModal }
