@@ -17,7 +17,6 @@ const createCategoryDropdown = () => {
     if (!tab.contains(event.target)) {
       for (let i=0; i < dropdownItems.length; i++) {
         if (dropdownItems[i] !== event.target) {
-          console.log(event.target);
           container.classList.remove('show');
         }
       }

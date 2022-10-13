@@ -1,10 +1,40 @@
-// Serves as prototype for individual categories
-const Category =  {
+const allCategories = [];
+
+const getCategories = () => {
+  return allCategories
 }
 
-const createCategory = (name) => {
-  newCategory = Category(name);
+const _storeCategory = (categoryName) => {
+  let catId = getCategories().length + 1
+  localStorage.setItem(`category${catId}`, categoryName);
 }
 
-// when user adds a new category, create an object with its prototype category ..
-// newCategory = Object.create(Category), then it will respond to instanceOf ??
+const _storedCategories = () => {
+  let categories = Object.entries(localStorage).filter(
+    key => key[0].includes('category')
+  )
+  return categories
+}
+
+const retrieveStoredCategories = () => {
+  let categories = _storedCategories();
+  for (let i=0; i < categories.length; i++) {
+    allCategories.push(categories[i]);
+  }
+}
+
+const createCategory = () => {
+  let userInput = document.getElementsByName('new-category')[0].value;
+
+  if (allCategories.includes(userInput)) {
+    console.log('will alert user');
+  } else {
+    allCategories.push(userInput);
+    _storeCategory(userInput);
+  }
+
+  document.querySelector('.new-category-modal').classList.remove('show');
+  document.querySelector('#backdrop').classList.remove('show');
+}
+
+export { createCategory, getCategories, retrieveStoredCategories }

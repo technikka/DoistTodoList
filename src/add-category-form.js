@@ -20,7 +20,7 @@ const createNewCategoryModal = () => {
   let btn = document.createElement('button');
   btn.textContent = 'create';
   modal.appendChild(btn);
-  Event.add(btn, 'click',  createCategory );
+  Event.add(btn, 'click', createCategory );
 }
 
 

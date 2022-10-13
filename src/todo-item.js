@@ -1,4 +1,23 @@
-import { getItems } from './index'
+const todoItems = [];
+
+const getItems = () => {
+  return todoItems
+}
+
+const _storedItems = () => {
+  let items = Object.entries(localStorage).filter(
+    key => key[0].includes('todoItem')
+  )
+  return items
+}
+
+const parseStoredItems = () => {
+  const items = _storedItems();
+  for (let i=0; i < items.length; i++ ) {
+    let obj = JSON.parse(items[i][1]);
+    todoItems.push(obj);
+  }
+}
 
 const todoItem = (properties) => {
   const title =  properties['title']
@@ -35,8 +54,7 @@ const createItem = () => {
 
   let newItem = todoItem(args);
 
-  // ATTENTION: don't want storeItem call here
   _storeItem(newItem);
 }
 
-export { todoItem, createItem }
+export { todoItem, createItem, getItems, parseStoredItems }
