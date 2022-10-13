@@ -1,4 +1,4 @@
-import { Event, newCategoryForm } from './event'
+import { showCategoryModal } from './category-modal';
 
 const createCategoryDropdown = () => {
   const tab = document.querySelector('.category-tab');
@@ -10,7 +10,7 @@ const createCategoryDropdown = () => {
   newCat.classList.add('dropdown-item');
   newCat.textContent = 'Create New';
   container.appendChild(newCat);
-  Event.add(newCat, 'click', newCategoryForm);
+  newCat.addEventListener('click', showCategoryModal);
 
   const closeOnClickAway = (event) => {
     const dropdownItems = document.getElementsByClassName('dropdown-item');
