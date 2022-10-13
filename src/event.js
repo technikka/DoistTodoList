@@ -22,24 +22,13 @@ const newCategoryForm = () => {
       }
     }
     if (!modal.contains(event.target) && modal != event.target) {
-      console.log(event.target);
       modal.classList.remove('show');
       backdrop.classList.remove('show');
     }
   }
 
   document.addEventListener('click', closeOnClickAway);
-  // const closeModal = closeOnClickAway.bind(modal, modal); 
-  // Event.add(document, 'click', closeModal);
 }
-
-// const closeOnClickAway = (obj, event) => {
-//   if (!obj.contains(event.target)) {
-//     console.log('removing show');
-//     obj.classList.remove('show');
-//   }
-// }
-
 
 const setEventListeners = () => {
   const addItemBtn = document.querySelector('.btn-add-item');

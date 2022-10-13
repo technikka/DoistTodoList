@@ -11,6 +11,20 @@ const createCategoryDropdown = () => {
   newCat.textContent = 'Create New';
   container.appendChild(newCat);
   Event.add(newCat, 'click', newCategoryForm);
+
+  const closeOnClickAway = (event) => {
+    const dropdownItems = document.getElementsByClassName('dropdown-item');
+    if (!tab.contains(event.target)) {
+      for (let i=0; i < dropdownItems.length; i++) {
+        if (dropdownItems[i] !== event.target) {
+          console.log(event.target);
+          container.classList.remove('show');
+        }
+      }
+    }
+  }
+  
+  document.addEventListener('click', closeOnClickAway);
 }
 
 export { createCategoryDropdown }
