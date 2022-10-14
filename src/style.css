@@ -152,3 +152,16 @@ header span {
   border: 3px solid white;
   border-radius: 5px;
 }
+
+.expand-icon {
+  width: 24px;
+  height: auto;
+  filter: invert(80%);
+  margin: auto;
+}
+
+.delete-icon {
+  width: 24px;
+  height: auto;
+  filter: invert(80%);
+}
