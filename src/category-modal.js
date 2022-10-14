@@ -23,6 +23,8 @@ const createNewCategoryModal = () => {
 }
 
 const showCategoryModal = () => {
+  createNewCategoryModal();
+
   const modal = document.querySelector('.new-category-modal');
   const backdrop = document.getElementById('backdrop');
   modal.classList.add('show');

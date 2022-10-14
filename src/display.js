@@ -1,7 +1,6 @@
 import { getItems } from './todo-item'
 
 const _setColorByPriority = (element, priorityLevel) => {
-  console.log(priorityLevel);
   let priorityColor;
 
   if (priorityLevel === 'green') {
@@ -14,7 +13,7 @@ const _setColorByPriority = (element, priorityLevel) => {
     priorityColor = '#E9C46A';
   }
   
-  element.style.backgroundColor = priorityColor
+  element.style.borderColor = priorityColor
 }
 
 const showAllTodos = () => {

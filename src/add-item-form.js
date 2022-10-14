@@ -1,4 +1,5 @@
 import { getCategories } from './category'
+import { createItem } from './todo-item'
 
 const createForm = () => {
   let content = document.querySelector('#content');
@@ -34,6 +35,7 @@ const createForm = () => {
   btn.textContent = 'Add';
   btn.classList.add('btn-add-item');
   fieldset.appendChild(btn);
+  btn.addEventListener('click', createItem);
 }
 
 const _addLabel = (parent, properties) => {
@@ -120,4 +122,10 @@ const _createSelect = (selectLabel, selectOptions, selectDefault) => {
   return container;
 }
 
-export { createForm }
+const displayForm = () => {
+  const content = document.querySelector('#content');
+  content.textContent = '';
+  createForm();
+}
+
+export { createForm, displayForm }
