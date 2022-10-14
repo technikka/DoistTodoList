@@ -1,3 +1,5 @@
+import { getCategories } from './category'
+
 const createForm = () => {
   let content = document.querySelector('#content');
 
@@ -26,7 +28,7 @@ const createForm = () => {
   // add notes property input
   fieldset.appendChild(_createTextArea({ textContent: 'Notes', for: 'notes'}, { "cols": "30", "rows": "8"}));
   // add category property input
-  fieldset.appendChild(_createSelect({ textContent: 'Category', for: 'category'}, {"default": "Default"}, "default"));
+  fieldset.appendChild(_createSelect({ textContent: 'Category', for: 'category'}, _categoriesSelectOptions(), "default"));
 
   const btn = document.createElement('button');
   btn.textContent = 'Add';
@@ -72,6 +74,27 @@ const _createTextArea = (areaLabel, areaProperties) => {
   container.appendChild(area);
 
   return container;
+}
+
+const _categoriesSelectOptions = () => {
+  let categories = getCategories();
+  let selectOptions = {}
+
+  // console.log(categories instanceof Array);
+  // console.log(getCategories.constructor.name);
+  // console.log(categories);
+  // console.log(categories.length);
+
+  // for (let i=0; i < categories.length; i++ ) {
+  //   console.log(categories[i]);
+  //   selectOptions[categories[i]] = categories[i]
+  // }
+
+  // categories.forEach(element => console.log(element));
+
+  // console.log(selectOptions);
+  // console.log(categories);
+  return selectOptions
 }
 
 // add selectDefault option with name attr to make option.selected = true

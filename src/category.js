@@ -19,7 +19,7 @@ const _storedCategories = () => {
 const retrieveStoredCategories = () => {
   let categories = _storedCategories();
   for (let i=0; i < categories.length; i++) {
-    allCategories.push(categories[i]);
+    allCategories.push(categories[i][1]);
   }
 }
 

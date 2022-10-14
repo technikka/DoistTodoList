@@ -20,8 +20,6 @@ const createNewCategoryModal = () => {
   btn.textContent = 'create';
   modal.appendChild(btn);
   btn.addEventListener('click', createCategory);
-  // add event for enter key
-  // Event.add(btn, 'keypress', createCategory );
 }
 
 const showCategoryModal = () => {
@@ -29,6 +27,7 @@ const showCategoryModal = () => {
   const backdrop = document.getElementById('backdrop');
   modal.classList.add('show');
   backdrop.classList.add('show');
+  document.querySelector('.new-category-modal input').focus();
 
   const closeOnClickAway = (event) => {
     const dropdownItems = document.getElementsByClassName('dropdown-item');

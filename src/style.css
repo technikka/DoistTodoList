@@ -140,3 +140,13 @@ header span {
   flex-flow: row wrap;
   gap: 10px;
 }
+
+.todo-item-container {
+  padding: 10px;
+  margin: 10px;
+  height: 30px;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  column-gap: 10px;
+}
