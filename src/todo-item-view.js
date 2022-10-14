@@ -16,16 +16,35 @@ const _setColorByPriority = (element, priorityLevel) => {
   element.style.borderColor = priorityColor
 }
 
-const _todoContainerMinimized = (item) => {
-  let container = document.createElement('div');
-  container.classList.add('todo-item-container');
+const _displayExpandContractIcon = (container) => {
+  let icon = document.createElement('img');
+  icon.classList.add('expand-contract-icon');
+  if (container.classList.contains('contracted')) {
+    icon.src = '../src/assets/arrow-expand-down.png';
+    icon.title = 'Expand View';
+  } else {
+    icon.src = '../src/assets/arrow-expand-up.png';
+    icon.title = 'Contract View';
+  }
+  icon.addEventListener('click', _toggleExpandContractView);
+  container.appendChild(icon);
+}
 
-  _setColorByPriority(container, item.priorityLevel);
+const _todoContainerExpanded = (container, item) => {
+  container.classList.toggle('contracted');
 
-  // let deleteBtn = document.createElement('button');
+  let description = document.createElement('p');
+  description.textContent = item.description;
+  description.classList.add('todo-item-description');
+  container.appendChild(description);
+}
+
+const _todoContainerContracted = (container, item) => {
+  container.classList.toggle('contracted');
+
   let delIcon = document.createElement('img');
   delIcon.src = '../src/assets/delete-forever.png';
-  // deleteBtn.style.backgroundImage = '../src/assets/delete-forever.png';
+  delIcon.title = 'Delete Item';
   delIcon.classList.add('delete-icon');
   container.appendChild(delIcon);
 
@@ -40,13 +59,18 @@ const _todoContainerMinimized = (item) => {
   let category = document.createElement('span');
   category.textContent = item.category;
   container.appendChild(category);
+}
 
-  let expandIcon = document.createElement('img');
-  expandIcon.src = '../src/assets/arrow-expand-down.png';
-  expandIcon.classList.add('expand-icon');
-  container.appendChild(expandIcon);
+const _toggleExpandContractView = (container, item) => {
+  container.textContent = '';
 
-  return container;
+  if (container.classList.contains('contracted')) {
+    _todoContainerContracted(container, item)
+    _todoContainerExpanded(container, item);
+  } else {
+    _todoContainerContracted(container, item);
+  }
+  _displayExpandContractIcon(container);
 }
 
 const showAllTodos = () => {
@@ -56,7 +80,11 @@ const showAllTodos = () => {
   let items = getItems();
 
   items.forEach(item => {
-    content.appendChild(_todoContainerMinimized(item));
+    let container = document.createElement('div');
+    container.classList.add('todo-item-container');
+    _setColorByPriority(container, item.priorityLevel);
+    _toggleExpandContractView(container, item);
+    content.appendChild(container);
   })
 }
 
