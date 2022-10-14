@@ -1,8 +1,8 @@
-import { displayForm } from './add-item-form'
-import { createCategoryDropdown } from './controls'
+import { displayForm } from './todo-item-form'
+import { createCategoryDropdown } from './header-view'
 import { retrieveStoredCategories } from './category'
 import { parseStoredItems } from './todo-item'
-import { showAllTodos } from './display'
+import { showAllTodos } from './todo-item-view'
 
 const setEventListeners = () => {
   const categoryTab = document.querySelector('.category-tab');

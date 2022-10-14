@@ -1,4 +1,4 @@
-import { showCategoryModal } from './category-modal';
+import { showCategoryModal } from './category-view';
 
 const createCategoryDropdown = () => {
   const tab = document.querySelector('.category-tab');
