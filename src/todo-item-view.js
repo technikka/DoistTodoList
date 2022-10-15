@@ -16,7 +16,7 @@ const _setColorByPriority = (element, priorityLevel) => {
   element.style.borderColor = priorityColor
 }
 
-const _displayExpandContractIcon = (container) => {
+const _displayExpandContractIcon = (container, item) => {
   let icon = document.createElement('img');
   icon.classList.add('expand-contract-icon');
   if (container.classList.contains('contracted')) {
@@ -26,7 +26,9 @@ const _displayExpandContractIcon = (container) => {
     icon.src = '../src/assets/arrow-expand-up.png';
     icon.title = 'Contract View';
   }
-  icon.addEventListener('click', _toggleExpandContractView);
+  icon.addEventListener('click', () => {
+    _toggleExpandContractView(container, item)
+  });
   container.appendChild(icon);
 }
 
@@ -40,7 +42,7 @@ const _todoContainerExpanded = (container, item) => {
 }
 
 const _todoContainerContracted = (container, item) => {
-  container.classList.toggle('contracted');
+  container.classList.add('contracted');
 
   let delIcon = document.createElement('img');
   delIcon.src = '../src/assets/delete-forever.png';
@@ -65,12 +67,12 @@ const _toggleExpandContractView = (container, item) => {
   container.textContent = '';
 
   if (container.classList.contains('contracted')) {
-    _todoContainerContracted(container, item)
+    _todoContainerContracted(container, item);
     _todoContainerExpanded(container, item);
   } else {
     _todoContainerContracted(container, item);
   }
-  _displayExpandContractIcon(container);
+  _displayExpandContractIcon(container, item);
 }
 
 const showAllTodos = () => {
