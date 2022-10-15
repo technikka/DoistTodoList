@@ -45,8 +45,6 @@ const _displayExpandContractIcon = (container, item) => {
 }
 
 const _todoContainerExpanded = (container, item) => {
-  container.classList.toggle('contracted');
-
   let description = document.createElement('p');
   description.textContent = item.description;
   description.classList.add('todo-item-description');
@@ -63,8 +61,6 @@ const _todoContainerExpanded = (container, item) => {
 }
 
 const _todoContainerContracted = (container, item) => {
-  container.classList.add('contracted');
-
   let delIcon = document.createElement('img');
   delIcon.src = '../src/assets/delete-forever.png';
   delIcon.title = 'Delete Item';
@@ -87,18 +83,20 @@ const _todoContainerContracted = (container, item) => {
   markComplete.textContent = 'Complete';
   markComplete.classList.add('todo-item-complete-btn');
   container.appendChild(markComplete);
+
+  _displayExpandContractIcon(container, item);
 }
 
 const _toggleExpandContractView = (container, item) => {
   container.textContent = '';
-
   if (container.classList.contains('contracted')) {
+    container.classList.toggle('contracted');
     _todoContainerContracted(container, item);
     _todoContainerExpanded(container, item);
   } else {
+    container.classList.toggle('contracted');
     _todoContainerContracted(container, item);
   }
-  _displayExpandContractIcon(container, item);
 }
 
 const showAllTodos = () => {
