@@ -4,6 +4,7 @@ const createCategoryDropdown = () => {
   const tab = document.querySelector('.category-tab');
   const container = document.createElement('div');
   container.classList.add('dropdown-content');
+  
   tab.appendChild(container);
 
   const newCat = document.createElement('div');

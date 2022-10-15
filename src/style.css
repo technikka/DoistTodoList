@@ -154,7 +154,13 @@ header span {
 
 .todo-item-description {
   flex-basis: 100%;
-} 
+  margin: 0;
+}
+
+.todo-item-notes {
+  flex-basis: 100%;
+  margin: 0;
+}
 
 .todo-item-container img:hover {
   cursor: pointer

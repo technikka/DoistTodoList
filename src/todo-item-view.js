@@ -16,6 +16,18 @@ const _setColorByPriority = (element, priorityLevel) => {
   element.style.borderColor = priorityColor
 }
 
+const _userReadablePriority = (priority) => {
+  if (priority === 'green') {
+    return 'Low'
+  } else if (priority === 'yellow') {
+    return 'Normal'
+  } else if (priority === 'orange') {
+    return 'Moderate'
+  } else {
+    return 'High';
+  }
+}
+
 const _displayExpandContractIcon = (container, item) => {
   let icon = document.createElement('img');
   icon.classList.add('expand-contract-icon');
@@ -39,6 +51,15 @@ const _todoContainerExpanded = (container, item) => {
   description.textContent = item.description;
   description.classList.add('todo-item-description');
   container.appendChild(description);
+
+  let notes = document.createElement('p');
+  notes.textContent = item.notes;
+  notes.classList.add('todo-item-notes');
+  container.appendChild(notes);
+
+  let priorityLevel = document.createElement('span');
+  priorityLevel.textContent = `Priority: ${_userReadablePriority(item.priorityLevel)}`;
+  container.appendChild(priorityLevel);
 }
 
 const _todoContainerContracted = (container, item) => {
@@ -61,6 +82,11 @@ const _todoContainerContracted = (container, item) => {
   let category = document.createElement('span');
   category.textContent = item.category;
   container.appendChild(category);
+
+  let markComplete = document.createElement('button');
+  markComplete.textContent = 'Complete';
+  markComplete.classList.add('todo-item-complete-btn');
+  container.appendChild(markComplete);
 }
 
 const _toggleExpandContractView = (container, item) => {
