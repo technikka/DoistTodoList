@@ -19,11 +19,18 @@ const createNewCategoryModal = () => {
   let btn = document.createElement('button');
   btn.textContent = 'create';
   modal.appendChild(btn);
-  btn.addEventListener('click', createCategory);
+  btn.addEventListener('click', () => {
+    createCategory(input.value);
+    document.querySelector('.new-category-modal').classList.remove('show');
+    document.querySelector('#backdrop').classList.remove('show');
+  });
 }
 
 const showCategoryModal = () => {
-  createNewCategoryModal();
+  const newCategoryModal = document.querySelector('.new-category-modal');
+  if (newCategoryModal === null) {
+    createNewCategoryModal();
+  }
 
   const modal = document.querySelector('.new-category-modal');
   const backdrop = document.getElementById('backdrop');

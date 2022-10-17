@@ -15,7 +15,7 @@ const createCategoryDropdown = () => {
   container.appendChild(newCat);
   newCat.addEventListener('click', showCategoryModal);
 
-  const categories = getCategories();
+  const categories = getCategories().sort();
 
   for (const category of categories) {
     const newDiv = document.createElement('div');

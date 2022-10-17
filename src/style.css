@@ -91,6 +91,14 @@ header span {
   padding: 10px;
 }
 
+.in-form-add-category {
+  visibility: hidden;
+}
+
+.in-form-add-category.show {
+  visibility: visible;
+}
+
 .new-category-modal {
   z-index: 5;
   border: 1px solid black;

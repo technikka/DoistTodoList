@@ -1,4 +1,4 @@
-const allCategories = [];
+const allCategories = ['General'];
 
 const getCategories = () => {
   return allCategories
@@ -23,18 +23,13 @@ const retrieveStoredCategories = () => {
   }
 }
 
-const createCategory = () => {
-  let userInput = document.getElementsByName('new-category')[0].value;
-
+const createCategory = (userInput) => {
   if (allCategories.includes(userInput)) {
     console.log('will alert user');
   } else {
     allCategories.push(userInput);
     _storeCategory(userInput);
   }
-
-  document.querySelector('.new-category-modal').classList.remove('show');
-  document.querySelector('#backdrop').classList.remove('show');
 }
 
 export { createCategory, getCategories, retrieveStoredCategories }

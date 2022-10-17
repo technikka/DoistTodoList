@@ -1,4 +1,4 @@
-import { getCategories } from './category'
+import { getCategories, createCategory } from './category'
 import { createItem } from './todo-item'
 
 const createForm = () => {
@@ -28,8 +28,41 @@ const createForm = () => {
   fieldset.appendChild(_createSelect({ textContent: 'Priority', for: 'priorityLevel'}, {"green": "Low Priority", "yellow": "Normal Priority", "orange": "Somewhat Priority", "red": "High Priority"}, "yellow"));
   // add notes property input
   fieldset.appendChild(_createTextArea({ textContent: 'Notes', for: 'notes'}, { "cols": "30", "rows": "8"}));
+
   // add category property input
-  fieldset.appendChild(_createSelect({ textContent: 'Category', for: 'category'}, _categoriesSelectOptions(), "default"));
+  const categoryContainer = _createSelect({ textContent: 'Category', for: 'category'}, _categoriesSelectOptions(), 'General')
+  fieldset.appendChild(categoryContainer);
+
+  let inputContainer = document.createElement('div');
+  inputContainer.classList.add('in-form-add-category');
+
+  let input = document.createElement('input');
+  input.placeholder = 'New Category Name';
+
+  inputContainer.appendChild(input);
+  let addBtn = document.createElement('button');
+
+  addBtn.textContent = 'Save'
+  inputContainer.appendChild(addBtn);
+  addBtn.addEventListener('click', () => {
+    createCategory(input.value);
+    inputContainer.classList.toggle('show');
+    // select box should show new category.
+  })
+
+  categoryContainer.appendChild(inputContainer);
+
+  // if 'create new' is selected
+  const categories = document.getElementById('category');
+  categories.addEventListener('change', function() {
+    if (this.value === 'Create New') {
+      inputContainer.classList.toggle('show');
+    } else {
+      if (inputContainer.classList.contains('show')) {
+        inputContainer.classList.remove('show');
+      }
+    }
+  })
 
   const btn = document.createElement('button');
   btn.textContent = 'Add';
@@ -78,9 +111,11 @@ const _createTextArea = (areaLabel, areaProperties) => {
   return container;
 }
 
-const _categoriesSelectOptions = () => {
-  let categories = getCategories();
+const _categoriesSelectOptions = (selectDefault) => {
+  let categories = getCategories().sort();
   let selectOptions = {};
+
+  selectOptions['Create New'] = ['Create New ...'];
 
   for (let i=0; i < categories.length; i++ ) {
     selectOptions[categories[i]] = categories[i];
@@ -111,6 +146,8 @@ const _createSelect = (selectLabel, selectOptions, selectDefault) => {
 
   return container;
 }
+
+
 
 const displayForm = () => {
   const content = document.querySelector('#content');
