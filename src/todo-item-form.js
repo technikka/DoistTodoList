@@ -80,23 +80,13 @@ const _createTextArea = (areaLabel, areaProperties) => {
 
 const _categoriesSelectOptions = () => {
   let categories = getCategories();
-  let selectOptions = {}
+  let selectOptions = {};
 
-  // console.log(categories instanceof Array);
-  // console.log(getCategories.constructor.name);
-  // console.log(categories);
-  // console.log(categories.length);
+  for (let i=0; i < categories.length; i++ ) {
+    selectOptions[categories[i]] = categories[i];
+  }
 
-  // for (let i=0; i < categories.length; i++ ) {
-  //   console.log(categories[i]);
-  //   selectOptions[categories[i]] = categories[i]
-  // }
-
-  // categories.forEach(element => console.log(element));
-
-  // console.log(selectOptions);
-  // console.log(categories);
-  return selectOptions
+  return selectOptions;
 }
 
 // add selectDefault option with name attr to make option.selected = true
@@ -107,7 +97,7 @@ const _createSelect = (selectLabel, selectOptions, selectDefault) => {
   let select = document.createElement('select');
   select.name = selectLabel.for;
   select.id = select.name;
-  container.appendChild(select)
+  container.appendChild(select);
 
   for (const [value, textContent] of Object.entries(selectOptions)) {
     let option = document.createElement('option');

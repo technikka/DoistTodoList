@@ -75,11 +75,15 @@ header span {
   min-width: 160px;
   z-index: 1;
   background-color: #e9e9ed;
-  border: 1px solid black;
 }
 
 .dropdown-content.show {
   display: block;
+}
+
+.dropdown-item:hover {
+  background-color: #264653;
+  color: white;
 }
 
 .dropdown-item {

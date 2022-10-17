@@ -99,13 +99,8 @@ const _toggleExpandContractView = (container, item) => {
   }
 }
 
-const showAllTodos = () => {
-  const content = document.querySelector('#content');
-  content.textContent = '';
-
-  let items = getItems();
-
-  items.forEach(item => {
+const displayItems = (itemsArray) => {
+  itemsArray.forEach(item => {
     let container = document.createElement('div');
     container.classList.add('todo-item-container');
     _setColorByPriority(container, item.priorityLevel);
@@ -114,4 +109,19 @@ const showAllTodos = () => {
   })
 }
 
-export { showAllTodos }
+const showAllTodos = () => {
+  const content = document.querySelector('#content');
+  content.textContent = '';
+  let items = getItems();
+  displayItems(items);
+}
+
+const filterByCategory = (category) => {
+  const content = document.querySelector('#content');
+  content.textContent = '';
+  let items = getItems(category);
+  displayItems(items);
+
+}
+
+export { showAllTodos, filterByCategory }

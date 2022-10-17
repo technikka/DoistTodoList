@@ -1,7 +1,11 @@
 const todoItems = [];
 
-const getItems = () => {
-  return todoItems
+const getItems = (category) => {
+  if (category !== undefined) {
+    return todoItems.filter(item => item.category === category);
+  } else {
+    return todoItems
+  }
 }
 
 const _storedItems = () => {
