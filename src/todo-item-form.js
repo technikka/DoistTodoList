@@ -38,21 +38,12 @@ const createForm = () => {
 
   let input = document.createElement('input');
   input.placeholder = 'New Category Name';
+  input.name = 'category';
 
   inputContainer.appendChild(input);
-  let addBtn = document.createElement('button');
-
-  addBtn.textContent = 'Save'
-  inputContainer.appendChild(addBtn);
-  addBtn.addEventListener('click', () => {
-    createCategory(input.value);
-    inputContainer.classList.toggle('show');
-    // select box should show new category.
-  })
 
   categoryContainer.appendChild(inputContainer);
 
-  // if 'create new' is selected
   const categories = document.getElementById('category');
   categories.addEventListener('change', function() {
     if (this.value === 'Create New') {

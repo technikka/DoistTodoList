@@ -32,4 +32,12 @@ const createCategory = (userInput) => {
   }
 }
 
-export { createCategory, getCategories, retrieveStoredCategories }
+const isNewCategory = (category) => {
+  if (getCategories().includes(category)) {
+    return false
+  } else {
+    return true
+  }
+} 
+
+export { createCategory, getCategories, retrieveStoredCategories, isNewCategory }

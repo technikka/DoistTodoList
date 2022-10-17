@@ -1,3 +1,5 @@
+import { createCategory, isNewCategory } from './category'
+
 const todoItems = [];
 
 const getItems = (category) => {
@@ -48,9 +50,18 @@ const createItem = () => {
 
   for (let i=0; i < properties.length; i++ ) {
     let propValue = document.getElementsByName(properties[i])[0].value;
-
     if (propValue.length > 0) {
-      args[properties[i]] = propValue;
+
+      // handle when a new category is being set
+      if (properties[i] === 'category') {
+        let input = document.querySelector('.in-form-add-category > input').value
+        if (input && isNewCategory(input)) {
+          args[properties[i]] = input;
+          createCategory(input);
+        }
+      } else {
+        args[properties[i]] = propValue;
+      }
     } else {
       args[properties[i]] = null;
     }
