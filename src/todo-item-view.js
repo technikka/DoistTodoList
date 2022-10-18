@@ -1,4 +1,5 @@
 import { getItems } from './todo-item'
+import { createForm } from './todo-item-form'
 
 const _setColorByPriority = (element, priorityLevel) => {
   let priorityColor;
@@ -109,6 +110,21 @@ const displayItems = (itemsArray) => {
   })
 }
 
+const createListHeader = (container, category) => {
+  const header = document.createElement('header');
+  const text = document.createElement('h2');
+  text.textContent = category;
+  header.appendChild(text);
+  const btn = document.createElement('img');
+  btn.src = '../src/assets/note-plus-outline.png';
+  btn.title = `Add item to ${category}`;
+  btn.addEventListener('click', () => {
+    createForm( { category: category });
+  })
+  header.appendChild(btn);
+  container.appendChild(header);
+}
+
 const showAllTodos = () => {
   const content = document.querySelector('#content');
   content.textContent = '';
@@ -120,8 +136,8 @@ const filterByCategory = (category) => {
   const content = document.querySelector('#content');
   content.textContent = '';
   let items = getItems(category);
+  createListHeader(content, category)
   displayItems(items);
-
 }
 
 export { showAllTodos, filterByCategory }

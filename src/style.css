@@ -20,7 +20,7 @@ body {
   opacity: 60%;
 }
 
-header {
+body > header {
   border: 1px solid green;
   height: 50px;
   display: grid;
@@ -30,17 +30,39 @@ header {
   column-gap: 10px;
 }
 
-header input {
+body > header input {
   margin-left: 20px;
   max-width: 300px;
 }
 
-header span {
+body > header span {
   width: max-content;
   height: min-content;
   background-color: #e9e9ed;
   padding: 10px;
   align-self: end;
+}
+
+#content > header {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+/* #content > header h2 {
+  height: min-content;
+} */
+
+#content > header img {
+  filter: invert(80%);
+  width: 30px;
+  height: 30px;
+  margin-left: 30px;
+}
+
+#content > header img:hover {
+  cursor: pointer;
 }
 
 .overview-tab {

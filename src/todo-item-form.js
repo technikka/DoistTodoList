@@ -1,7 +1,8 @@
 import { getCategories, createCategory } from './category'
 import { createItem } from './todo-item'
 
-const createForm = () => {
+// can pass object to set form fields to specific values.
+const createForm = (optionalDefaults = {}) => {
   let content = document.querySelector('#content');
 
   let container = document.createElement('div');
@@ -30,7 +31,11 @@ const createForm = () => {
   fieldset.appendChild(_createTextArea({ textContent: 'Notes', for: 'notes'}, { "cols": "30", "rows": "8"}));
 
   // add category property input
-  const categoryContainer = _createSelect({ textContent: 'Category', for: 'category'}, categoriesSelectOptions(), 'General')
+  let defaultCategory = 'General';
+  if (optionalDefaults['category']) {
+    defaultCategory = optionalDefaults['category'];
+  }
+  const categoryContainer = _createSelect({ textContent: 'Category', for: 'category'}, categoriesSelectOptions(), defaultCategory)
   fieldset.appendChild(categoryContainer);
 
   let inputContainer = document.createElement('div');
@@ -141,8 +146,6 @@ const _createSelect = (selectLabel, selectOptions, selectDefault) => {
 
   return container;
 }
-
-
 
 const displayForm = () => {
   const content = document.querySelector('#content');
