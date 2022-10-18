@@ -3,6 +3,7 @@ import { createCategoryDropdown } from './category-view'
 import { retrieveStoredCategories } from './category'
 import { parseStoredItems } from './todo-item'
 import { showAllTodos } from './todo-item-view'
+import { createSidebar } from './side-bar-view'
 
 const setEventListeners = () => {
   const categoryTab = document.querySelector('.category-tab');
@@ -19,6 +20,7 @@ const setEventListeners = () => {
 
 parseStoredItems();
 retrieveStoredCategories();
+createSidebar();
 createCategoryDropdown();
 setEventListeners();
 showAllTodos();

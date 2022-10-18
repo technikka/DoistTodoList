@@ -1,5 +1,6 @@
 import { getItems } from './todo-item'
 import { createForm } from './todo-item-form'
+import { compareAsc } from 'date-fns'
 
 const _setColorByPriority = (element, priorityLevel) => {
   let priorityColor;
@@ -140,4 +141,13 @@ const filterByCategory = (category) => {
   displayItems(items);
 }
 
-export { showAllTodos, filterByCategory }
+const showByDueDate = () => {
+  const content = document.querySelector('#content');
+  content.textContent = '';
+
+  let items = getItems();
+  let test = compareAsc(new Date(items[0].dueDate), new Date(items[1].dueDate));
+  console.log(test);
+}
+
+export { showAllTodos, filterByCategory, showByDueDate }
