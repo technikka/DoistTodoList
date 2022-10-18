@@ -1,3 +1,5 @@
+import { reloadCategoryTab, reloadCategoryTodoSelect } from './category-view'
+
 const allCategories = ['General'];
 
 const getCategories = () => {
@@ -25,10 +27,13 @@ const retrieveStoredCategories = () => {
 
 const createCategory = (userInput) => {
   if (allCategories.includes(userInput)) {
-    console.log('will alert user');
+    // simply don't create a double
+    return
   } else {
     allCategories.push(userInput);
     _storeCategory(userInput);
+    reloadCategoryTab();
+    reloadCategoryTodoSelect();
   }
 }
 

@@ -1,4 +1,6 @@
-import { createCategory } from './category'
+import { getCategories, createCategory } from './category'
+import { filterByCategory } from './todo-item-view'
+import { addSelectOptions, categoriesSelectOptions } from './todo-item-form'
 
 const createNewCategoryModal = () => {
   const contentContainer = document.getElementById('content');
@@ -54,6 +56,64 @@ const showCategoryModal = () => {
   document.addEventListener('click', closeOnClickAway);
 }
 
+const addCreateNew = (container) => {
+  const newCat = document.createElement('div');
+  newCat.classList.add('dropdown-item');
+  newCat.textContent = 'Create New';
+  container.appendChild(newCat);
+  newCat.addEventListener('click', showCategoryModal);
+}
+
+const addCategories = (container) => {
+  const categories = getCategories().sort();
+
+  for (const category of categories) {
+    const newDiv = document.createElement('div');
+    newDiv.classList.add('dropdown-item');
+    newDiv.textContent = category;
+    container.appendChild(newDiv);
+    newDiv.addEventListener('click', () => {
+      filterByCategory(category);
+    });
+  }
+}
+
+const createCategoryDropdown = () => {
+  const tab = document.querySelector('.category-tab');
+  const container = document.createElement('div');
+  container.classList.add('dropdown-content');
+  tab.appendChild(container);
+
+  addCreateNew(container);
+  addCategories(container);
+
+  const closeOnClickAway = (event) => {
+    const dropdownItems = document.getElementsByClassName('dropdown-item');
+    if (!tab.contains(event.target)) {
+      for (let i=0; i < dropdownItems.length; i++) {
+        if (dropdownItems[i] !== event.target) {
+          container.classList.remove('show');
+        }
+      }
+    }
+  }
+  
+  document.addEventListener('click', closeOnClickAway);
+}
+
+const reloadCategoryTab = () => {
+  let container = document.querySelector('.dropdown-content');
+  container.textContent = '';
+  addCreateNew(container);
+  addCategories(container);
+}
+
+const reloadCategoryTodoSelect = () => {
+  let selectBox = document.getElementById('category');
+  selectBox.textContent = '';
+  addSelectOptions(selectBox, categoriesSelectOptions(), 'General');
+}
 
 
-export { createNewCategoryModal, showCategoryModal }
+
+export { createNewCategoryModal, showCategoryModal, reloadCategoryTab, createCategoryDropdown, reloadCategoryTodoSelect }

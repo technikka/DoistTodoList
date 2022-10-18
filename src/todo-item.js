@@ -51,13 +51,14 @@ const createItem = () => {
   for (let i=0; i < properties.length; i++ ) {
     let propValue = document.getElementsByName(properties[i])[0].value;
     if (propValue.length > 0) {
-
       // handle when a new category is being set
       if (properties[i] === 'category') {
         let input = document.querySelector('.in-form-add-category > input').value
         if (input && isNewCategory(input)) {
           args[properties[i]] = input;
           createCategory(input);
+        } else {
+          args[properties[i]] = 'General';
         }
       } else {
         args[properties[i]] = propValue;
@@ -68,7 +69,7 @@ const createItem = () => {
   }
 
   let newItem = todoItem(args);
-
+  
   _storeItem(newItem);
 }
 

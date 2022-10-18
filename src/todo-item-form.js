@@ -30,7 +30,7 @@ const createForm = () => {
   fieldset.appendChild(_createTextArea({ textContent: 'Notes', for: 'notes'}, { "cols": "30", "rows": "8"}));
 
   // add category property input
-  const categoryContainer = _createSelect({ textContent: 'Category', for: 'category'}, _categoriesSelectOptions(), 'General')
+  const categoryContainer = _createSelect({ textContent: 'Category', for: 'category'}, categoriesSelectOptions(), 'General')
   fieldset.appendChild(categoryContainer);
 
   let inputContainer = document.createElement('div');
@@ -102,7 +102,7 @@ const _createTextArea = (areaLabel, areaProperties) => {
   return container;
 }
 
-const _categoriesSelectOptions = (selectDefault) => {
+const categoriesSelectOptions = (selectDefault) => {
   let categories = getCategories().sort();
   let selectOptions = {};
 
@@ -115,6 +115,18 @@ const _categoriesSelectOptions = (selectDefault) => {
   return selectOptions;
 }
 
+const addSelectOptions = (select, selectOptions, selectDefault) => {
+  for (const [value, textContent] of Object.entries(selectOptions)) {
+    let option = document.createElement('option');
+    option.value = value;
+    option.textContent = textContent;
+    if (selectDefault && option.value === selectDefault) {
+      option.selected = true;
+    }
+    select.appendChild(option);
+  }
+}
+
 // add selectDefault option with name attr to make option.selected = true
 const _createSelect = (selectLabel, selectOptions, selectDefault) => {
   let container = document.createElement('div');
@@ -125,15 +137,7 @@ const _createSelect = (selectLabel, selectOptions, selectDefault) => {
   select.id = select.name;
   container.appendChild(select);
 
-  for (const [value, textContent] of Object.entries(selectOptions)) {
-    let option = document.createElement('option');
-    option.value = value;
-    option.textContent = textContent;
-    if (selectDefault && option.value === selectDefault) {
-      option.selected = true;
-    }
-    select.appendChild(option);
-  }
+  addSelectOptions(select, selectOptions, selectDefault);
 
   return container;
 }
@@ -146,4 +150,4 @@ const displayForm = () => {
   createForm();
 }
 
-export { createForm, displayForm }
+export { createForm, displayForm, addSelectOptions, categoriesSelectOptions }
