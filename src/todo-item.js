@@ -18,6 +18,25 @@ const sortByDate = (items) => {
   return sortedItems
 }
 
+const sortByPriority = (items) => {
+  const compare = (a, b) => {
+    let priorityLevels = ['green', 'yellow', 'orange', 'red'];
+
+    if (priorityLevels.indexOf(a) > priorityLevels.indexOf(b)) {
+      return -1
+    }
+    if (priorityLevels.indexOf(a) < priorityLevels.indexOf(b)) {
+      return 1
+    }
+    return 0
+  }
+  
+  let sortedItems = items.sort(
+    (a,b) => compare(a.priorityLevel, b.priorityLevel)
+  )
+  return sortedItems
+}
+
 const _storedItems = () => {
   let items = Object.entries(localStorage).filter(
     key => key[0].includes('todoItem')
@@ -81,4 +100,4 @@ const createItem = () => {
   _storeItem(newItem);
 }
 
-export { todoItem, createItem, getItems, parseStoredItems, sortByDate }
+export { todoItem, createItem, getItems, parseStoredItems, sortByDate, sortByPriority }

@@ -1,4 +1,4 @@
-import { getItems, sortByDate } from './todo-item'
+import { getItems, sortByDate, sortByPriority } from './todo-item'
 import { createForm } from './todo-item-form'
 
 let currentlyShowing = [];
@@ -153,4 +153,10 @@ const showByDueDate = () => {
   displayItems(items);
 }
 
-export { showAllTodos, filterByCategory, showByDueDate }
+const showByPriorityLevel = () => {
+  document.getElementById('display-items-container').remove();
+  let items = sortByPriority(currentlyShowing);
+  displayItems(items);
+}
+
+export { showAllTodos, filterByCategory, showByDueDate, showByPriorityLevel }

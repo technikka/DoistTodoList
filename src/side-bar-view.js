@@ -1,4 +1,4 @@
-import { showByDueDate } from './todo-item-view'
+import { showByDueDate, showByPriorityLevel } from './todo-item-view'
 
 const sidebar = document.getElementById('side-bar');
 
@@ -21,6 +21,9 @@ const createSortElement = () => {
   const sortByPriority = document.createElement('li');
   sortByPriority.textContent = 'Priority Level';
   container.appendChild(sortByPriority);
+  sortByPriority.addEventListener('click', () => {
+    showByPriorityLevel();
+  })
 
   const sortByCategory = document.createElement('li');
   sortByCategory.textContent = 'Category';
