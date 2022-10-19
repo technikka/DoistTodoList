@@ -16,8 +16,6 @@ body {
   grid-row-start: 2;
   background: #e9edee;
   padding: 20px;
-  /* display: flex;
-  justify-content: center; */
 }
 
 #side-bar h2 {
@@ -36,7 +34,7 @@ body {
   transform-origin: left;
 }
 
-#content {
+#display-items-container {
   grid-column-start: 2;
   grid-row-start: 2;
   display: flex;
@@ -86,10 +84,6 @@ body > header span {
   justify-content: center;
 }
 
-/* #content > header h2 {
-  height: min-content;
-} */
-
 #content > header img {
   filter: invert(80%);
   width: 30px;
@@ -108,11 +102,6 @@ body > header span {
 .overview-tab:hover {
   cursor: pointer;
 }
-
-/* .category-tab {
-  width: max-content;
-  height: min-content;
-} */
 
 .category-tab img {
   filter: invert(100%);

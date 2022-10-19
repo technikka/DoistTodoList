@@ -1,4 +1,5 @@
 import { createCategory, isNewCategory } from './category'
+import { compareAsc } from 'date-fns'
 
 const todoItems = [];
 
@@ -8,6 +9,13 @@ const getItems = (category) => {
   } else {
     return todoItems
   }
+}
+
+const sortByDate = (items) => {
+  let sortedItems = items.sort(
+    (a,b) => compareAsc(new Date(a.dueDate), new Date(b.dueDate))
+  )
+  return sortedItems
 }
 
 const _storedItems = () => {
@@ -73,4 +81,4 @@ const createItem = () => {
   _storeItem(newItem);
 }
 
-export { todoItem, createItem, getItems, parseStoredItems }
+export { todoItem, createItem, getItems, parseStoredItems, sortByDate }

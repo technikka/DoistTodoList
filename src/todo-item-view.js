@@ -1,6 +1,8 @@
-import { getItems } from './todo-item'
+import { getItems, sortByDate } from './todo-item'
 import { createForm } from './todo-item-form'
-import { compareAsc } from 'date-fns'
+
+let currentlyShowing = [];
+const content = document.getElementById('content');
 
 const _setColorByPriority = (element, priorityLevel) => {
   let priorityColor;
@@ -102,13 +104,19 @@ const _toggleExpandContractView = (container, item) => {
 }
 
 const displayItems = (itemsArray) => {
+  const displayItemsContainer = document.createElement('div');
+  displayItemsContainer.id = 'display-items-container';
+  content.appendChild(displayItemsContainer);
+
   itemsArray.forEach(item => {
     let container = document.createElement('div');
     container.classList.add('todo-item-container');
     _setColorByPriority(container, item.priorityLevel);
     _toggleExpandContractView(container, item);
-    content.appendChild(container);
+    displayItemsContainer.appendChild(container);
   })
+
+  currentlyShowing = itemsArray;
 }
 
 const createListHeader = (container, category) => {
@@ -123,31 +131,26 @@ const createListHeader = (container, category) => {
     createForm( { category: category });
   })
   header.appendChild(btn);
-  container.appendChild(header);
+  container.prepend(header);
 }
 
 const showAllTodos = () => {
-  const content = document.querySelector('#content');
   content.textContent = '';
   let items = getItems();
   displayItems(items);
 }
 
 const filterByCategory = (category) => {
-  const content = document.querySelector('#content');
   content.textContent = '';
+  createListHeader(content, category);
   let items = getItems(category);
-  createListHeader(content, category)
   displayItems(items);
 }
 
 const showByDueDate = () => {
-  const content = document.querySelector('#content');
-  content.textContent = '';
-
-  let items = getItems();
-  let test = compareAsc(new Date(items[0].dueDate), new Date(items[1].dueDate));
-  console.log(test);
+  document.getElementById('display-items-container').remove();
+  let items = sortByDate(currentlyShowing);
+  displayItems(items);
 }
 
 export { showAllTodos, filterByCategory, showByDueDate }

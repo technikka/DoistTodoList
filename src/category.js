@@ -33,7 +33,10 @@ const createCategory = (userInput) => {
     allCategories.push(userInput);
     _storeCategory(userInput);
     reloadCategoryTab();
-    reloadCategoryTodoSelect();
+    // if new todo form is showing
+    if (document.getElementById('category')) {
+      reloadCategoryTodoSelect();
+    }
   }
 }
 
