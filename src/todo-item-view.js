@@ -159,4 +159,31 @@ const showByPriorityLevel = () => {
   displayItems(items);
 }
 
-export { showAllTodos, filterByCategory, showByDueDate, showByPriorityLevel }
+const expandAll = () => {
+  const containers = document.getElementsByClassName('todo-item-container');
+  const items = currentlyShowing;
+
+  for (let i=0; i < items.length; i++) {
+    if (containers[i].classList.contains('contracted')) {
+      containers[i].classList.remove('contracted');
+      containers[i].textContent = '';
+      _todoContainerContracted(containers[i], items[i]);
+      _todoContainerExpanded(containers[i], items[i]);
+    }
+  }
+}
+
+const contractAll = () => {
+  const containers = document.getElementsByClassName('todo-item-container');
+  const items = currentlyShowing;
+
+  for (let i=0; i < items.length; i++) {
+    if (!containers[i].classList.contains('contracted')) {
+      containers[i].classList.add('contracted');
+      containers[i].textContent = '';
+      _todoContainerContracted(containers[i], items[i]);
+    }
+  }
+}
+
+export { showAllTodos, filterByCategory, showByDueDate, showByPriorityLevel, expandAll, contractAll }

@@ -18,17 +18,21 @@ body {
   padding: 20px;
 }
 
+#side-bar div {
+  padding-bottom: 15px;
+}
+
 #side-bar h2 {
   font-size: 18px;
 }
 
-.sort-container li {
+#side-bar li {
   width: max-content;
   list-style: none;
   padding: 5px 10px;
 }
 
-.sort-container li:hover {
+#side-bar li:hover {
   cursor: pointer;
   transform: scale(1.2);
   transform-origin: left;
