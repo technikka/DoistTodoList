@@ -1,7 +1,7 @@
 import { createCategory, isNewCategory } from './category'
 import { compareAsc } from 'date-fns'
 
-const todoItems = [];
+let todoItems = [];
 
 const getItems = (category) => {
   if (category !== undefined) {
@@ -100,4 +100,14 @@ const createItem = () => {
   _storeItem(newItem);
 }
 
-export { todoItem, createItem, getItems, parseStoredItems, sortByDate, sortByPriority }
+const deleteItem = (item) => {
+  for (let i=0; i < todoItems.length; i++) {
+    if (todoItems[i] === item) {
+      todoItems.splice(i, 1);
+    }
+  }
+  let key = `todoItem${item.id}`
+  localStorage.removeItem(key);
+}
+
+export { todoItem, createItem, getItems, parseStoredItems, sortByDate, sortByPriority, deleteItem }

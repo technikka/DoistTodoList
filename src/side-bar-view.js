@@ -47,12 +47,38 @@ const createViewElement = () => {
   contract.addEventListener('click', () => {
     contractAll();
   })
+}
 
+const createManageCategoryElement = () => {
+  const container = document.createElement('div');
+  sidebar.appendChild(container);
+
+  const catHeading = document.createElement('h2');
+  catHeading.textContent = 'Manage';
+  container.appendChild(catHeading);
+
+  const manageCat = document.createElement('li');
+  manageCat.textContent = 'Categories';
+  container.appendChild(manageCat);
+  manageCat.addEventListener('click', () => {
+    // function
+  })
+}
+
+const createRecentlyCompletedElement = () => {
+  const container = document.createElement('div');
+  sidebar.appendChild(container);
+
+  const completedheading = document.createElement('h2');
+  completedheading.textContent = 'Recently Completed';
+  container.appendChild(completedheading);
 }
 
 const createSidebar = () => {
   createViewElement();
   createSortElement();
+  createManageCategoryElement();
+  createRecentlyCompletedElement(); 
 }
 
 export { createSidebar }

@@ -1,4 +1,4 @@
-import { getItems, sortByDate, sortByPriority } from './todo-item'
+import { getItems, sortByDate, sortByPriority, deleteItem } from './todo-item'
 import { createForm } from './todo-item-form'
 
 let currentlyShowing = [];
@@ -70,6 +70,10 @@ const _todoContainerContracted = (container, item) => {
   delIcon.title = 'Delete Item';
   delIcon.classList.add('delete-icon');
   container.appendChild(delIcon);
+  delIcon.addEventListener('click', () => {
+    deleteItem(item);
+    container.remove();
+  })
 
   let title = document.createElement('span');
   title.textContent = item.title;
