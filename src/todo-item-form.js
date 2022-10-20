@@ -9,6 +9,20 @@ const createForm = (optionalDefaults = {}) => {
   container.classList.add('add-item-container');
   content.appendChild(container);
 
+  const closeOnClickAway = (event) => {
+    const backdrop = document.getElementById('backdrop');
+    const trigger = document.querySelector('#side-bar > img')
+
+    if (event.target !== trigger && !container.contains(event.target) && container != event.target) {
+      container.classList.remove('show');
+      backdrop.classList.remove('show');
+    }
+  }
+
+  document.addEventListener('click', (closeOnClickAway));
+
+  addExitBtn(container);
+
   let form = document.createElement('form');
   container.appendChild(form);
 
@@ -65,6 +79,17 @@ const createForm = (optionalDefaults = {}) => {
   btn.classList.add('btn-add-item');
   fieldset.appendChild(btn);
   btn.addEventListener('click', createItem);
+}
+
+const addExitBtn = (parent) => {
+  let btn = document.createElement('img');
+  btn.src = '../src/assets/close-thick.png';
+  btn.title = 'Close Form';
+  parent.appendChild(btn);
+  btn.addEventListener('click', () => {
+    parent.classList.remove('show');
+    document.getElementById('backdrop').classList.remove('show');
+  })
 }
 
 const _addLabel = (parent, properties) => {
@@ -148,9 +173,10 @@ const _createSelect = (selectLabel, selectOptions, selectDefault) => {
 }
 
 const displayForm = () => {
-  const content = document.querySelector('#content');
-  content.textContent = '';
-  createForm();
+  const form = document.querySelector('.add-item-container')
+  const backdrop = document.getElementById('backdrop');
+  form.classList.add('show');
+  backdrop.classList.add('show');
 }
 
 export { createForm, displayForm, addSelectOptions, categoriesSelectOptions }

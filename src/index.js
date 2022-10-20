@@ -1,7 +1,8 @@
 import { createCategoryDropdown } from './category-view'
 import { retrieveStoredCategories } from './category'
 import { parseStoredItems, parseStoredCompleted } from './todo-item'
-import { showAllTodos } from './todo-item-view'
+import { showAllTodos} from './todo-item-view'
+import { createForm } from './todo-item-form'
 import { createSidebar } from './side-bar-view'
 import { format } from 'date-fns'
 
@@ -32,3 +33,4 @@ createCategoryDropdown();
 setEventListeners();
 showAllTodos();
 displayHeaderDate();
+createForm();
