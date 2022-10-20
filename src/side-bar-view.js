@@ -1,4 +1,5 @@
 import { showByDueDate, showByPriorityLevel, expandAll, contractAll, showCompleted } from './todo-item-view'
+import { displayForm } from './todo-item-form'
 
 const sidebar = document.getElementById('side-bar');
 
@@ -79,10 +80,18 @@ const createCompletedElement = () => {
   viewAll .addEventListener('click', () => {
     showCompleted();
   })
+}
 
+const createAddTodoButton = () => {
+  const btn = document.createElement('img');
+  btn.src = '../src/assets/note-plus-outline.png'
+  btn.addEventListener('click', displayForm);
+  btn.title = 'Create Task';
+  sidebar.appendChild(btn);
 }
 
 const createSidebar = () => {
+  createAddTodoButton();
   createViewElement();
   createSortElement();
   createManageCategoryElement();

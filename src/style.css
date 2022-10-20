@@ -16,6 +16,17 @@ body {
   grid-row-start: 2;
   background: #e9edee;
   padding: 20px;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#side-bar img {
+  filter: invert(80%);
+  align-self: center;
+}
+
+#side-bar img:hover {
+  cursor: pointer;
 }
 
 #side-bar div {

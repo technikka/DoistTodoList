@@ -1,4 +1,3 @@
-import { displayForm } from './todo-item-form'
 import { createCategoryDropdown } from './category-view'
 import { retrieveStoredCategories } from './category'
 import { parseStoredItems, parseStoredCompleted } from './todo-item'
@@ -14,9 +13,6 @@ const setEventListeners = () => {
 
   const overviewTab = document.querySelector('.overview-tab');
   overviewTab.addEventListener('click', showAllTodos);
-
-  const todoFormBtn = document.querySelector('.btn-todoItem-form');
-  todoFormBtn.addEventListener('click', displayForm);
 };
 
 const todaysDate = () => {
@@ -25,7 +21,7 @@ const todaysDate = () => {
 
 const displayHeaderDate = () => {
   const element = document.querySelector('.date');
-  element.textContent = `Welcome! Today is ${todaysDate()}`
+  element.textContent = `Today is ${todaysDate()}`
 }
 
 parseStoredItems();

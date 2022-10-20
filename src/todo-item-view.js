@@ -64,9 +64,12 @@ const _todoContainerExpanded = (container, item) => {
   priorityLevel.textContent = `Priority: ${_userReadablePriority(item.priorityLevel)}`;
   container.appendChild(priorityLevel);
 
-  let dueDate = document.createElement('span');
-  dueDate.textContent = `Due ${format(new Date(item.dueDate),'EEEE, LLLL do')} `
-  container.appendChild(dueDate);
+  if (item.isComplete === false) {
+    let dueDate = document.createElement('span');
+    dueDate.textContent = `Due ${format(new Date(item.dueDate),'EEEE, LLLL do')} `
+    container.appendChild(dueDate);
+  }
+  
 
   let delIcon = document.createElement('img');
   delIcon.src = '../src/assets/delete-forever.png';
@@ -113,9 +116,12 @@ const _todoContainerContracted = (container, item) => {
     }
   }
 
-  let dueDate = document.createElement('span');
-  dueDate.textContent = daysUntilDue(item.dueDate);
-  container.appendChild(dueDate);
+  if (item.isComplete === false) {
+    let dueDate = document.createElement('span');
+    dueDate.textContent = daysUntilDue(item.dueDate);
+    container.appendChild(dueDate);
+  }
+  
 
   let category = document.createElement('span');
   category.textContent = item.category;
