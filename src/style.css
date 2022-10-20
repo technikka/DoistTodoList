@@ -243,3 +243,9 @@ body > header span {
   height: 24px;
   filter: invert(80%);
 }
+
+.todo-item-complete-btn {
+  width: 30px;
+  height: 30px;
+  filter: invert(80%);
+}

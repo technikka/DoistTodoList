@@ -3,12 +3,44 @@ import { compareAsc } from 'date-fns'
 
 let todoItems = [];
 
+const removeFromTodoItems = (item) => {
+  for (let i=0; i < todoItems.length; i++) {
+    if (todoItems[i] === item) {
+      todoItems.splice(i, 1);
+    }
+  }
+}
+
+const _removeTodoFromStorage = (item) => {
+  let key = `todoItem${item.id}`
+  localStorage.removeItem(key);
+}
+
+let completedItems = [];
+
+const addToCompletedItems = (item) => {
+  completedItems.push(item);
+}
+
 const getItems = (category) => {
+  console.log(todoItems);
   if (category !== undefined) {
     return todoItems.filter(item => item.category === category);
   } else {
     return todoItems
   }
+}
+
+const getCompletedItems = () => {
+  return completedItems
+}
+
+const markItemComplete = (item) => {
+  item.isComplete = true;
+  removeFromTodoItems(item);
+  addToCompletedItems(item);
+  _storeCompleted(item);
+  _removeTodoFromStorage(item);
 }
 
 const sortByDate = (items) => {
@@ -37,6 +69,29 @@ const sortByPriority = (items) => {
   return sortedItems
 }
 
+const _storeCompleted = (completedItem) => {
+  localStorage.setItem(`completedItem${completedItem.id}`, JSON.stringify(completedItem))
+}
+
+const _storedCompleted = () => {
+  let items = Object.entries(localStorage).filter(
+    key => key[0].includes('completedItem')
+  )
+  return items
+}
+
+const parseStoredCompleted = () => {
+  let completed = _storedCompleted();
+  for (let i=0; i < completed.length; i++) {
+    let obj = JSON.parse(completed[i][1])
+    completedItems.push(obj);
+  }
+}
+
+const _storeItem = (todoItem) => {
+  localStorage.setItem(`todoItem${todoItem.id}`, JSON.stringify(todoItem));
+}
+
 const _storedItems = () => {
   let items = Object.entries(localStorage).filter(
     key => key[0].includes('todoItem')
@@ -63,12 +118,8 @@ const todoItem = (properties) => {
   const id = getItems().length + 1;
   const isComplete = false; 
 
-  return {title, description, priorityLevel, dueDate, category, notes, id }
+  return {title, description, priorityLevel, dueDate, category, notes, id, isComplete }
 };
-
-const _storeItem = (todoItem) => {
-  localStorage.setItem(`todoItem${todoItem.id}`, JSON.stringify(todoItem));
-}
 
 const createItem = () => {
   let properties = ['title', 'description', 'priorityLevel', 'dueDate', 'category', 'notes']
@@ -101,13 +152,8 @@ const createItem = () => {
 }
 
 const deleteItem = (item) => {
-  for (let i=0; i < todoItems.length; i++) {
-    if (todoItems[i] === item) {
-      todoItems.splice(i, 1);
-    }
-  }
-  let key = `todoItem${item.id}`
-  localStorage.removeItem(key);
+  removeFromtodoItems(item);
+  _removeTodoFromStorage(item);
 }
 
-export { todoItem, createItem, getItems, parseStoredItems, sortByDate, sortByPriority, deleteItem }
+export { todoItem, createItem, getItems, parseStoredItems, sortByDate, sortByPriority, deleteItem, getCompletedItems, markItemComplete, parseStoredCompleted }

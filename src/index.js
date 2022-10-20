@@ -1,7 +1,7 @@
 import { displayForm } from './todo-item-form'
 import { createCategoryDropdown } from './category-view'
 import { retrieveStoredCategories } from './category'
-import { parseStoredItems } from './todo-item'
+import { parseStoredItems, parseStoredCompleted } from './todo-item'
 import { showAllTodos } from './todo-item-view'
 import { createSidebar } from './side-bar-view'
 
@@ -19,6 +19,7 @@ const setEventListeners = () => {
 };
 
 parseStoredItems();
+parseStoredCompleted();
 retrieveStoredCategories();
 createSidebar();
 createCategoryDropdown();

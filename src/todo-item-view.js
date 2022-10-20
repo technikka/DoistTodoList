@@ -1,4 +1,4 @@
-import { getItems, sortByDate, sortByPriority, deleteItem } from './todo-item'
+import { getItems, sortByDate, sortByPriority, deleteItem, markItemComplete, getCompletedItems } from './todo-item'
 import { createForm } from './todo-item-form'
 
 let currentlyShowing = [];
@@ -62,9 +62,7 @@ const _todoContainerExpanded = (container, item) => {
   let priorityLevel = document.createElement('span');
   priorityLevel.textContent = `Priority: ${_userReadablePriority(item.priorityLevel)}`;
   container.appendChild(priorityLevel);
-}
 
-const _todoContainerContracted = (container, item) => {
   let delIcon = document.createElement('img');
   delIcon.src = '../src/assets/delete-forever.png';
   delIcon.title = 'Delete Item';
@@ -74,6 +72,26 @@ const _todoContainerContracted = (container, item) => {
     deleteItem(item);
     container.remove();
   })
+}
+
+const _todoContainerContracted = (container, item) => {
+  if (item.isComplete === false) {
+    let markComplete = document.createElement('img');
+    markComplete.src = '../src/assets/checkbox-blank-outline.png';
+    markComplete.classList.add('todo-item-complete-btn');
+    markComplete.title = 'Mark Complete';
+    container.appendChild(markComplete);
+    markComplete.addEventListener('click', () => {
+      markItemComplete(item);
+      container.remove();
+    })
+  } else {
+    let complete = document.createElement('img');
+    complete.src = '../src/assets/checkbox-marked-outline.png';
+    complete.classList.add('todo-item-complete-btn');
+    container.appendChild(complete);
+  }
+  
 
   let title = document.createElement('span');
   title.textContent = item.title;
@@ -86,11 +104,6 @@ const _todoContainerContracted = (container, item) => {
   let category = document.createElement('span');
   category.textContent = item.category;
   container.appendChild(category);
-
-  let markComplete = document.createElement('button');
-  markComplete.textContent = 'Complete';
-  markComplete.classList.add('todo-item-complete-btn');
-  container.appendChild(markComplete);
 
   _displayExpandContractIcon(container, item);
 }
@@ -190,4 +203,10 @@ const contractAll = () => {
   }
 }
 
-export { showAllTodos, filterByCategory, showByDueDate, showByPriorityLevel, expandAll, contractAll }
+const showCompleted = () => {
+  content.textContent = '';
+  let items = getCompletedItems();
+  displayItems(items);
+}
+
+export { showAllTodos, filterByCategory, showByDueDate, showByPriorityLevel, expandAll, contractAll, showCompleted }

@@ -1,4 +1,4 @@
-import { showByDueDate, showByPriorityLevel, expandAll, contractAll } from './todo-item-view'
+import { showByDueDate, showByPriorityLevel, expandAll, contractAll, showCompleted } from './todo-item-view'
 
 const sidebar = document.getElementById('side-bar');
 
@@ -65,20 +65,28 @@ const createManageCategoryElement = () => {
   })
 }
 
-const createRecentlyCompletedElement = () => {
+const createCompletedElement = () => {
   const container = document.createElement('div');
   sidebar.appendChild(container);
 
   const completedheading = document.createElement('h2');
-  completedheading.textContent = 'Recently Completed';
+  completedheading.textContent = 'Completed';
   container.appendChild(completedheading);
+
+  const viewAll = document.createElement('li');
+  viewAll .textContent = 'View All';
+  container.appendChild(viewAll );
+  viewAll .addEventListener('click', () => {
+    showCompleted();
+  })
+
 }
 
 const createSidebar = () => {
   createViewElement();
   createSortElement();
   createManageCategoryElement();
-  createRecentlyCompletedElement(); 
+  createCompletedElement(); 
 }
 
 export { createSidebar }
