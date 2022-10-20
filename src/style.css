@@ -81,6 +81,12 @@ body > header span {
   align-self: end;
 }
 
+.date {
+  background: none;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
 #content > header {
   display: flex;
   flex-flow: row wrap;

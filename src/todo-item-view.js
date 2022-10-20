@@ -1,5 +1,6 @@
 import { getItems, sortByDate, sortByPriority, deleteItem, markItemComplete, getCompletedItems } from './todo-item'
 import { createForm } from './todo-item-form'
+import { differenceInDays, format } from 'date-fns'
 
 let currentlyShowing = [];
 const content = document.getElementById('content');
@@ -63,6 +64,10 @@ const _todoContainerExpanded = (container, item) => {
   priorityLevel.textContent = `Priority: ${_userReadablePriority(item.priorityLevel)}`;
   container.appendChild(priorityLevel);
 
+  let dueDate = document.createElement('span');
+  dueDate.textContent = `Due ${format(new Date(item.dueDate),'EEEE, LLLL do')} `
+  container.appendChild(dueDate);
+
   let delIcon = document.createElement('img');
   delIcon.src = '../src/assets/delete-forever.png';
   delIcon.title = 'Delete Item';
@@ -91,14 +96,25 @@ const _todoContainerContracted = (container, item) => {
     complete.classList.add('todo-item-complete-btn');
     container.appendChild(complete);
   }
-  
 
   let title = document.createElement('span');
   title.textContent = item.title;
   container.appendChild(title);
 
+  const daysUntilDue = (dueDate) => {
+    let date = new Date(dueDate);
+    let days = differenceInDays(date, new Date());
+    if (days === 0) {
+      return 'Due today';
+    } else if (days < 0) {
+      return `${Math.abs(days)} days past due`;
+    } else {
+      return `Due in ${days} days`
+    }
+  }
+
   let dueDate = document.createElement('span');
-  dueDate.textContent = item.dueDate;
+  dueDate.textContent = daysUntilDue(item.dueDate);
   container.appendChild(dueDate);
 
   let category = document.createElement('span');

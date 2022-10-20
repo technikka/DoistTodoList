@@ -23,7 +23,6 @@ const addToCompletedItems = (item) => {
 }
 
 const getItems = (category) => {
-  console.log(todoItems);
   if (category !== undefined) {
     return todoItems.filter(item => item.category === category);
   } else {

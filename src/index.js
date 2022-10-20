@@ -4,6 +4,7 @@ import { retrieveStoredCategories } from './category'
 import { parseStoredItems, parseStoredCompleted } from './todo-item'
 import { showAllTodos } from './todo-item-view'
 import { createSidebar } from './side-bar-view'
+import { format } from 'date-fns'
 
 const setEventListeners = () => {
   const categoryTab = document.querySelector('.category-tab');
@@ -18,6 +19,15 @@ const setEventListeners = () => {
   todoFormBtn.addEventListener('click', displayForm);
 };
 
+const todaysDate = () => {
+  return format(new Date(),'EEEE, LLLL do');
+}
+
+const displayHeaderDate = () => {
+  const element = document.querySelector('.date');
+  element.textContent = `Welcome! Today is ${todaysDate()}`
+}
+
 parseStoredItems();
 parseStoredCompleted();
 retrieveStoredCategories();
@@ -25,3 +35,4 @@ createSidebar();
 createCategoryDropdown();
 setEventListeners();
 showAllTodos();
+displayHeaderDate();
