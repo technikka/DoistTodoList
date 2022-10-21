@@ -1,8 +1,8 @@
-import { getCategories, createCategory } from './category'
+import { getCategories } from './category'
 import { createItem } from './todo-item'
 
 // can pass object to set form fields to specific values.
-const createForm = (optionalDefaults = {}) => {
+const createForm = () => {
   let content = document.querySelector('#content');
 
   let container = document.createElement('div');
@@ -46,9 +46,6 @@ const createForm = (optionalDefaults = {}) => {
 
   // add category property input
   let defaultCategory = 'General';
-  if (optionalDefaults['category']) {
-    defaultCategory = optionalDefaults['category'];
-  }
   const categoryContainer = _createSelect({ textContent: 'Category', for: 'category'}, categoriesSelectOptions(), defaultCategory)
   fieldset.appendChild(categoryContainer);
 

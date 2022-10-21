@@ -1,9 +1,9 @@
 import { getItems, sortByDate, sortByPriority, deleteItem, markItemComplete, getCompletedItems } from './todo-item'
-import { createForm, displayForm } from './todo-item-form'
 import { differenceInDays, format } from 'date-fns'
 
 let currentlyShowing = [];
-// const content = document.getElementById('content');
+
+const content = document.getElementById('content');
 const displayItemsContainer = document.createElement('div');
 displayItemsContainer.id = 'display-items-container';
 content.appendChild(displayItemsContainer);
@@ -163,19 +163,14 @@ const createListHeader = (container, category) => {
   const text = document.createElement('h2');
   text.textContent = category;
   header.appendChild(text);
-  const btn = document.createElement('img');
-  btn.src = '../src/assets/note-plus-outline.png';
-  btn.title = `Add item to ${category}`;
-  btn.addEventListener('click', () => {
-    // TODO: this call is from an older implementation of the form.
-    // createForm({ category: category });
-  })
-
-  header.appendChild(btn);
   container.prepend(header);
 }
 
 const showAllTodos = () => {
+  const header = document.querySelector('#content > header');
+  if (header) {
+    header.remove();
+  }
   displayItemsContainer.textContent = '';
   let items = getItems();
   displayItems(items);
