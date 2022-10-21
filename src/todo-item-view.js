@@ -74,7 +74,7 @@ const _todoContainerExpanded = (container, item) => {
   }
 
   let delIcon = document.createElement('img');
-  delIcon.src = '../src/assets/delete-forever.png';
+  delIcon.src = '../src/assets/delete-forever-outline.png';
   delIcon.title = 'Delete Item';
   delIcon.classList.add('delete-icon');
   container.appendChild(delIcon);
@@ -123,11 +123,15 @@ const _todoContainerContracted = (container, item) => {
     dueDate.textContent = daysUntilDue(item.dueDate);
     container.appendChild(dueDate);
   }
-  
 
   let category = document.createElement('span');
   category.textContent = item.category;
   container.appendChild(category);
+
+  let editIcon = document.createElement('img');
+  editIcon.src = '../src/assets/square-edit-outline.png';
+  editIcon.title = 'Edit this item'
+  container.appendChild(editIcon);
 
   _displayExpandContractIcon(container, item);
 }

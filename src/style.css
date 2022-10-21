@@ -251,13 +251,6 @@ body > header span {
   border-radius: 5px;
 }
 
-.todo-item-complete-btn {
-  width: 30px;
-  height: 30px;
-  filter: invert(80%);
-  padding-right: 10px;
-}
-
 .todo-item-container span {
   padding-right: 50px;
   display: inline-flex;
@@ -278,16 +271,17 @@ body > header span {
   cursor: pointer
 }
 
-.expand-contract-icon {
+.todo-item-container img {
+  filter: invert(80%);
   width: 24px;
   height: 24px;
-  filter: invert(80%);
+}
+
+.expand-contract-icon {
   margin-left: auto;
 }
 
 
-.delete-icon {
-  width: 24px;
-  height: 24px;
-  filter: invert(80%);
+.todo-item-complete-btn {
+  padding-right: 10px;
 }

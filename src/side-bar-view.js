@@ -50,21 +50,23 @@ const createViewElement = () => {
   })
 }
 
-const createManageCategoryElement = () => {
-  const container = document.createElement('div');
-  sidebar.appendChild(container);
+// Have not implemented this feature yet.
 
-  const catHeading = document.createElement('h2');
-  catHeading.textContent = 'Manage';
-  container.appendChild(catHeading);
+// const createManageCategoryElement = () => {
+//   const container = document.createElement('div');
+//   sidebar.appendChild(container);
 
-  const manageCat = document.createElement('li');
-  manageCat.textContent = 'Categories';
-  container.appendChild(manageCat);
-  manageCat.addEventListener('click', () => {
-    // function
-  })
-}
+//   const catHeading = document.createElement('h2');
+//   catHeading.textContent = 'Manage';
+//   container.appendChild(catHeading);
+
+//   const manageCat = document.createElement('li');
+//   manageCat.textContent = 'Categories';
+//   container.appendChild(manageCat);
+//   manageCat.addEventListener('click', () => {
+//     // function
+//   })
+// }
 
 const createCompletedElement = () => {
   const container = document.createElement('div');
@@ -94,7 +96,7 @@ const createSidebar = () => {
   createAddTodoButton();
   createViewElement();
   createSortElement();
-  createManageCategoryElement();
+  // createManageCategoryElement();
   createCompletedElement(); 
 }
 
