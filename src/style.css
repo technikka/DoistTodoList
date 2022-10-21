@@ -212,6 +212,8 @@ body > header span {
   padding: 10px;
   z-index: 5;
   position: fixed;
+  /* top should be height of body header */
+  top: 50px;
   pointer-events: none;
   opacity: 0%;
 }

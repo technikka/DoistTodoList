@@ -3,7 +3,7 @@ import { compareAsc } from 'date-fns'
 
 let todoItems = [];
 
-const removeFromTodoItems = (item) => {
+const _removeFromTodoItems = (item) => {
   for (let i=0; i < todoItems.length; i++) {
     if (todoItems[i] === item) {
       todoItems.splice(i, 1);
@@ -151,7 +151,7 @@ const createItem = () => {
 }
 
 const deleteItem = (item) => {
-  removeFromtodoItems(item);
+  _removeFromTodoItems(item);
   _removeTodoFromStorage(item);
 }
 
