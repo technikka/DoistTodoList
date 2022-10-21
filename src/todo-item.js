@@ -36,7 +36,7 @@ const getCompletedItems = () => {
 
 const markItemComplete = (item) => {
   item.isComplete = true;
-  removeFromTodoItems(item);
+  _removeFromTodoItems(item);
   addToCompletedItems(item);
   _storeCompleted(item);
   _removeTodoFromStorage(item);
@@ -144,7 +144,6 @@ const createItem = () => {
       args[properties[i]] = null;
     }
   }
-
   let newItem = todoItem(args);
   
   _storeItem(newItem);

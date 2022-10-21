@@ -173,7 +173,7 @@ const _createSelect = (selectLabel, selectOptions, selectDefault) => {
 }
 
 const displayForm = () => {
-  const form = document.querySelector('.add-item-container')
+  const form = document.querySelector('.add-item-container');
   const backdrop = document.getElementById('backdrop');
   form.classList.add('show');
   backdrop.classList.add('show');

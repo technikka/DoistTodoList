@@ -1,9 +1,12 @@
 import { getItems, sortByDate, sortByPriority, deleteItem, markItemComplete, getCompletedItems } from './todo-item'
-import { createForm } from './todo-item-form'
+import { createForm, displayForm } from './todo-item-form'
 import { differenceInDays, format } from 'date-fns'
 
 let currentlyShowing = [];
-const content = document.getElementById('content');
+// const content = document.getElementById('content');
+const displayItemsContainer = document.createElement('div');
+displayItemsContainer.id = 'display-items-container';
+content.appendChild(displayItemsContainer);
 
 const _setColorByPriority = (element, priorityLevel) => {
   let priorityColor;
@@ -64,12 +67,11 @@ const _todoContainerExpanded = (container, item) => {
   priorityLevel.textContent = `Priority: ${_userReadablePriority(item.priorityLevel)}`;
   container.appendChild(priorityLevel);
 
-  if (item.isComplete === false) {
+  if (item.isComplete === false && item.dueDate !== null) {
     let dueDate = document.createElement('span');
     dueDate.textContent = `Due ${format(new Date(item.dueDate),'EEEE, LLLL do')} `
     container.appendChild(dueDate);
   }
-  
 
   let delIcon = document.createElement('img');
   delIcon.src = '../src/assets/delete-forever.png';
@@ -116,7 +118,7 @@ const _todoContainerContracted = (container, item) => {
     }
   }
 
-  if (item.isComplete === false) {
+  if (item.isComplete === false && item.dueDate !== null) {
     let dueDate = document.createElement('span');
     dueDate.textContent = daysUntilDue(item.dueDate);
     container.appendChild(dueDate);
@@ -143,9 +145,7 @@ const _toggleExpandContractView = (container, item) => {
 }
 
 const displayItems = (itemsArray) => {
-  const displayItemsContainer = document.createElement('div');
-  displayItemsContainer.id = 'display-items-container';
-  content.appendChild(displayItemsContainer);
+  
 
   itemsArray.forEach(item => {
     let container = document.createElement('div');
@@ -167,33 +167,44 @@ const createListHeader = (container, category) => {
   btn.src = '../src/assets/note-plus-outline.png';
   btn.title = `Add item to ${category}`;
   btn.addEventListener('click', () => {
-    createForm( { category: category });
+    // TODO: this call is from an older implementation of the form.
+    // createForm({ category: category });
   })
+
   header.appendChild(btn);
   container.prepend(header);
 }
 
 const showAllTodos = () => {
-  content.textContent = '';
+  displayItemsContainer.textContent = '';
   let items = getItems();
   displayItems(items);
 }
 
 const filterByCategory = (category) => {
-  content.textContent = '';
-  createListHeader(content, category);
+  const heading = document.querySelector('#content > header > h2');
+  if (heading) {
+    heading.textContent = category ;
+    const btn = document.querySelector('#content > header > img');
+    btn.title = `Add item to ${category}`;
+  } else {
+    createListHeader(content, category);
+  }
+
+  displayItemsContainer.textContent = '';
+  
   let items = getItems(category);
   displayItems(items);
 }
 
 const showByDueDate = () => {
-  document.getElementById('display-items-container').remove();
+  displayItemsContainer.textContent = '';
   let items = sortByDate(currentlyShowing);
   displayItems(items);
 }
 
 const showByPriorityLevel = () => {
-  document.getElementById('display-items-container').remove();
+  displayItemsContainer.textContent = '';
   let items = sortByPriority(currentlyShowing);
   displayItems(items);
 }
@@ -226,7 +237,7 @@ const contractAll = () => {
 }
 
 const showCompleted = () => {
-  content.textContent = '';
+  displayItemsContainer.textContent = '';
   let items = getCompletedItems();
   displayItems(items);
 }
