@@ -61,18 +61,20 @@ const _todoContainerExpanded = (container, item) => {
 
   let priorityLevel = document.createElement('span');
   priorityLevel.textContent = `Priority: ${_userReadablePriority(item.priorityLevel)}`;
+  priorityLevel.classList.add('todo-item-priority');
   container.appendChild(priorityLevel);
 
   if (item.isComplete === false && item.dueDate !== null) {
     let dueDate = document.createElement('span');
-    dueDate.textContent = `Due ${format(new Date(item.dueDate),'EEEE, LLLL do')} `
+    dueDate.textContent = `Due: ${format(new Date(item.dueDate),'EEE L/dd')} `
+    dueDate.classList.add('todo-item-due-date');
     container.appendChild(dueDate);
   }
 
   let delIcon = document.createElement('img');
   delIcon.src = '../src/assets/delete-forever-outline.png';
   delIcon.title = 'Delete Item';
-  delIcon.classList.add('delete-icon');
+  delIcon.classList.add('todo-item-delete');
   container.appendChild(delIcon);
   delIcon.addEventListener('click', () => {
     deleteItem(item);
@@ -102,6 +104,11 @@ const _todoContainerContracted = (container, item) => {
   title.textContent = item.title;
   container.appendChild(title);
 
+  let category = document.createElement('span');
+  category.classList.add('todo-item-category');
+  category.textContent = item.category;
+  container.appendChild(category);
+
   const daysUntilDue = (dueDate) => {
     let date = new Date(dueDate);
     let days = differenceInDays(date, new Date());
@@ -116,13 +123,10 @@ const _todoContainerContracted = (container, item) => {
 
   if (item.isComplete === false && item.dueDate !== null) {
     let dueDate = document.createElement('span');
+    dueDate.classList.add('todo-item-due-days');
     dueDate.textContent = daysUntilDue(item.dueDate);
     container.appendChild(dueDate);
   }
-
-  let category = document.createElement('span');
-  category.textContent = item.category;
-  container.appendChild(category);
 
   // Haven't implemented this feature yet
 

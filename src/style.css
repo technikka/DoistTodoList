@@ -73,10 +73,11 @@ body > header {
   grid-column-end: -1;
   height: 50px;
   display: grid;
-  grid-template-columns: 1.5fr repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   align-content: center;
   align-items: center;
   column-gap: 10px;
+  margin-right: 10px;
 }
 
 body > header input {
@@ -92,6 +93,16 @@ body > header span {
   align-self: end;
 }
 
+.tabs {
+  justify-self: end;
+  display: flex;
+  gap: 10px;
+}
+
+.overview-tab:hover {
+  cursor: pointer;
+}
+
 .date {
   background: none;
   font-weight: bold;
@@ -103,14 +114,6 @@ body > header span {
   flex-flow: row wrap;
   align-items: center;
   justify-content: center;
-}
-
-.overview-tab {
-  justify-self: end;
-}
-
-.overview-tab:hover {
-  cursor: pointer;
 }
 
 .category-tab img {
@@ -244,22 +247,41 @@ body > header span {
   flex-basis: min-content;
   padding: 10px;
   margin: 10px;
-  display: flex;
-  flex-flow: row wrap;
-  align-content: center;
+  display: grid;
+  grid-template-columns: 24px repeat(3, 1fr) 24px;
+  grid-gap: 10px;
   border: 3px solid white;
   border-radius: 5px;
 }
 
 .todo-item-container span {
-  padding-right: 50px;
-  display: inline-flex;
-  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.todo-item-due-days {
+  justify-self: end;
+}
+
+.todo-item-due-date {
+  grid-area: 3 / 4;
+  justify-self: end;
+}
+
+.todo-item-priority {
+  grid-area: 3 / 2;
+  align-self: end;
 }
 
 .todo-item-description {
-  flex-basis: 100%;
+  grid-area: 2 / 2 / span 1 / span 3;
   margin: 0;
+}
+
+.todo-item-delete {
+  grid-area: 3 / 5;
+  align-self: end;
 }
 
 .todo-item-container img:hover {
@@ -270,13 +292,4 @@ body > header span {
   filter: invert(80%);
   width: 24px;
   height: 24px;
-}
-
-.expand-contract-icon {
-  margin-left: auto;
-}
-
-
-.todo-item-complete-btn {
-  padding-right: 10px;
 }
