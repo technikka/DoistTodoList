@@ -8,12 +8,12 @@ import { format } from 'date-fns'
 
 const setEventListeners = () => {
   const categoryTab = document.querySelector('.category-tab');
-  categoryTab.addEventListener('click', () => {
+  categoryTab?.addEventListener('click', () => {
     document.querySelector('.dropdown-content').classList.toggle('show');
   } )
 
   const overviewTab = document.querySelector('.overview-tab');
-  overviewTab.addEventListener('click', showAllTodos);
+  overviewTab?.addEventListener('click', showAllTodos);
 };
 
 const todaysDate = () => {
@@ -22,7 +22,10 @@ const todaysDate = () => {
 
 const displayHeaderDate = () => {
   const element = document.querySelector('.date');
-  element.textContent = `Today is ${todaysDate()}`
+  if (element) {
+    element.textContent = `Today is ${todaysDate()}`
+  }
+  
 }
 
 parseStoredItems();

@@ -119,16 +119,15 @@ const todoItem = (properties) => {
   const priorityLevel = properties['priorityLevel'];
   const dueDate = properties['dueDate'];
   const category = properties['category'];
-  const notes = properties['notes'];
 
   const id = getItems().length + 1;
   const isComplete = false; 
 
-  return {title, description, priorityLevel, dueDate, category, notes, id, isComplete }
+  return {title, description, priorityLevel, dueDate, category, id, isComplete }
 };
 
 const createItem = () => {
-  let properties = ['title', 'description', 'priorityLevel', 'dueDate', 'category', 'notes']
+  let properties = ['title', 'description', 'priorityLevel', 'dueDate', 'category']
 
   let args = {}
 

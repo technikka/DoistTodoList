@@ -6,7 +6,8 @@ let currentlyShowing = [];
 const content = document.getElementById('content');
 const displayItemsContainer = document.createElement('div');
 displayItemsContainer.id = 'display-items-container';
-content.appendChild(displayItemsContainer);
+
+content?.appendChild(displayItemsContainer);
 
 const _setColorByPriority = (element, priorityLevel) => {
   let priorityColor;
@@ -57,11 +58,6 @@ const _todoContainerExpanded = (container, item) => {
   description.textContent = item.description;
   description.classList.add('todo-item-description');
   container.appendChild(description);
-
-  let notes = document.createElement('p');
-  notes.textContent = item.notes;
-  notes.classList.add('todo-item-notes');
-  container.appendChild(notes);
 
   let priorityLevel = document.createElement('span');
   priorityLevel.textContent = `Priority: ${_userReadablePriority(item.priorityLevel)}`;

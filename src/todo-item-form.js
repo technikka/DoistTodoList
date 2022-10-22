@@ -7,7 +7,7 @@ const createForm = () => {
 
   let container = document.createElement('div');
   container.classList.add('add-item-container');
-  content.appendChild(container);
+  content?.appendChild(container);
 
   const closeOnClickAway = (event) => {
     const backdrop = document.getElementById('backdrop');
@@ -45,8 +45,6 @@ const createForm = () => {
   fieldset.appendChild(_createInput('date', { textContent: 'Due Date', for: 'dueDate'}));
   // add priorityLevel property input
   fieldset.appendChild(_createSelect({ textContent: 'Priority', for: 'priorityLevel'}, {"green": "Low Priority", "yellow": "Normal Priority", "orange": "Somewhat Priority", "red": "High Priority"}, "yellow"));
-  // add notes property input
-  fieldset.appendChild(_createTextArea({ textContent: 'Notes', for: 'notes'}, { "cols": "30", "rows": "8"}));
 
   // add category property input
   let defaultCategory = 'General';
@@ -65,7 +63,7 @@ const createForm = () => {
   categoryContainer.appendChild(inputContainer);
 
   const categories = document.getElementById('category');
-  categories.addEventListener('change', function() {
+  categories?.addEventListener('change', function() {
     if (this.value === 'Create New') {
       inputContainer.classList.toggle('show');
     } else {

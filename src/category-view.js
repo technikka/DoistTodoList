@@ -82,14 +82,14 @@ const createCategoryDropdown = () => {
   const tab = document.querySelector('.category-tab');
   const container = document.createElement('div');
   container.classList.add('dropdown-content');
-  tab.appendChild(container);
+  tab?.appendChild(container);
 
   addCreateNew(container);
   addCategories(container);
 
   const closeOnClickAway = (event) => {
     const dropdownItems = document.getElementsByClassName('dropdown-item');
-    if (!tab.contains(event.target)) {
+    if (!tab?.contains(event.target)) {
       for (let i=0; i < dropdownItems.length; i++) {
         if (dropdownItems[i] !== event.target) {
           container.classList.remove('show');

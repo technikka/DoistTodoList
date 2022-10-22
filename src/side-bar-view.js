@@ -5,7 +5,7 @@ const sidebar = document.getElementById('side-bar');
 
 const createSortElement = () => {
   const container = document.createElement('div');
-  sidebar.appendChild(container);
+  sidebar?.appendChild(container);
 
   container.classList.add('sort-container');
   const sortHeading = document.createElement('h2');
@@ -29,7 +29,7 @@ const createSortElement = () => {
 
 const createViewElement = () => {
   const container = document.createElement('div');
-  sidebar.appendChild(container);
+  sidebar?.appendChild(container);
 
   const viewHeading = document.createElement('h2');
   viewHeading.textContent = 'View';
@@ -70,7 +70,7 @@ const createViewElement = () => {
 
 const createCompletedElement = () => {
   const container = document.createElement('div');
-  sidebar.appendChild(container);
+  sidebar?.appendChild(container);
 
   const completedheading = document.createElement('h2');
   completedheading.textContent = 'Completed';
@@ -89,7 +89,7 @@ const createAddTodoButton = () => {
   btn.src = '../src/assets/note-plus-outline.png'
   btn.addEventListener('click', displayForm);
   btn.title = 'Create Task';
-  sidebar.appendChild(btn);
+  sidebar?.appendChild(btn);
 }
 
 const createSidebar = () => {
