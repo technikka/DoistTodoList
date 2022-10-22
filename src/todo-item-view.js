@@ -13,16 +13,16 @@ const _setColorByPriority = (element, priorityLevel) => {
   let priorityColor;
 
   if (priorityLevel === 'green') {
-    priorityColor = 'invert(95%) sepia(95%) saturate(565%) hue-rotate(44deg) brightness(87%) contrast(88%)'
+    priorityColor = '#668d3c'
   } else if (priorityLevel === 'orange') {
-    priorityColor = 'invert(79%) sepia(80%) saturate(563%) hue-rotate(320deg) brightness(90%) contrast(110%)'
+    priorityColor = '#d57500'
   } else if (priorityLevel === 'red') {
-    priorityColor = 'invert(50%) sepia(40%) saturate(881%) hue-rotate(314deg) brightness(104%) contrast(110%)';
+    priorityColor = '#8f3b1b';
   } else {
-    priorityColor = 'invert(76%) sepia(60%) saturate(350%) hue-rotate(360deg) brightness(103%) contrast(95%)';
+    priorityColor = '#dbca69';
   }
   
-  element.style.filter = priorityColor
+  element.style.backgroundColor = priorityColor
 }
 
 const _userReadablePriority = (priority) => {
@@ -128,8 +128,7 @@ const _todoContainerContracted = (container, item) => {
     container.appendChild(dueDate);
   }
 
-  let color = document.createElement('img');
-  color.src = '../src/assets/circle.png';
+  let color = document.createElement('span');
   color.classList.add('todo-item-priority-circle');
   container.appendChild(color);
   _setColorByPriority(color, item.priorityLevel);

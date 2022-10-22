@@ -4,20 +4,23 @@ html {
 
 body {
   font-family: 'Helvetica';
+  max-width: 1100px;
   margin: 0;
   height: 100%;
   display: grid;
-  grid-template-columns: 250px 1fr;
-  grid-template-rows: 50px 1fr;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
 }
 
 #side-bar {
   grid-column-start: 1;
   grid-row-start: 2;
   background: #e9edee;
+  border-radius: 5px;
   padding: 20px;
   display: flex;
   flex-flow: column nowrap;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 #side-bar img {
@@ -71,13 +74,12 @@ body {
 body > header {
   grid-column-start: 1;
   grid-column-end: -1;
-  height: 50px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-content: center;
   align-items: center;
   column-gap: 10px;
-  margin-right: 10px;
+  margin: 10px;
 }
 
 body > header input {
@@ -93,27 +95,25 @@ body > header span {
   align-self: end;
 }
 
+.date {
+  background: none;
+  font-weight: bold;
+}
+
 .tabs {
   justify-self: end;
   display: flex;
   gap: 10px;
 }
 
-.overview-tab:hover {
+.tabs span {
+  background-color: #e9edee;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.tabs span:hover {
   cursor: pointer;
-}
-
-.date {
-  background: none;
-  font-weight: bold;
-  margin-left: 10px;
-}
-
-#content > header {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: center;
 }
 
 .category-tab img {
@@ -122,11 +122,15 @@ body > header span {
   height: min-content;
   width: 24px;
   height: auto;
-  vertical-align: bottom;
+  margin: -3px 0;
+  vertical-align: middle;
 }
 
-.category-tab:hover {
-  cursor: pointer;
+#content > header {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
 }
 
 .dropdown-content {
@@ -198,14 +202,12 @@ body > header span {
   background-color: white;
   border: 1px solid black;
   border-radius: 5px;
-  justify-self: center;
-  width: 50%;
-  max-width: 500px;
   padding: 10px;
   z-index: 5;
-  position: fixed;
-  /* top should be height of body header */
-  top: 50px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   pointer-events: none;
   opacity: 0%;
 }
@@ -226,9 +228,9 @@ body > header span {
   cursor: pointer;
 } 
 
-.add-item-container legend {
-  padding: 10px 0;
-}
+/* .add-item-container legend {
+
+} */
 
 .add-item-container fieldset {
   display: flex;
@@ -246,12 +248,12 @@ body > header span {
 .todo-item-container {
   flex-basis: min-content;
   padding: 10px;
-  margin: 10px;
+  margin: 0 10px 10px 10px;
   display: grid;
   grid-template-columns: 24px repeat(3, 1fr) 24px 24px;
   grid-gap: 10px;
   align-items: center;
-  border: 2px solid white;
+  border: 2px solid #d2d5d6;
   border-radius: 5px;
 }
 
@@ -269,6 +271,11 @@ body > header span {
 
 .todo-item-priority-circle {
   grid-column-start: 5;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  display: inline-block;
+
 }
 
 .expand-contract-icon {
@@ -291,7 +298,7 @@ body > header span {
 }
 
 .todo-item-delete {
-  grid-area: 3 / 5;
+  grid-area: 3 / 6;
   align-self: end;
 }
 
@@ -300,7 +307,7 @@ body > header span {
 }
 
 .todo-item-container img {
-  filter: invert(80%);
+  filter: invert(65%);
   width: 24px;
   height: 24px;
 }
