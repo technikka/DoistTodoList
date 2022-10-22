@@ -50,9 +50,7 @@ const sortByDate = (items) => {
   }
 
   let sortedItems = items.sort(
-    (a,b) => {
-      compareAsc(new Date(a.dueDate), new Date(b.dueDate))
-    }
+    (a,b) => compareAsc(new Date(a.dueDate), new Date(b.dueDate))
   )
 
   return sortedItems.concat(nulls)
