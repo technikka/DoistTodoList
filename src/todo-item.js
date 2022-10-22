@@ -43,10 +43,19 @@ const markItemComplete = (item) => {
 }
 
 const sortByDate = (items) => {
+  let nulls = items.filter(item => item.dueDate === null);
+  for (let i=0; i < nulls.length; i++) {
+    let index = items.indexOf(nulls[i])
+    items.splice(index, 1);
+  }
+
   let sortedItems = items.sort(
-    (a,b) => compareAsc(new Date(a.dueDate), new Date(b.dueDate))
+    (a,b) => {
+      compareAsc(new Date(a.dueDate), new Date(b.dueDate))
+    }
   )
-  return sortedItems
+
+  return sortedItems.concat(nulls)
 }
 
 const sortByPriority = (items) => {
