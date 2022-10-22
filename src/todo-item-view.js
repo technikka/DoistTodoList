@@ -13,16 +13,16 @@ const _setColorByPriority = (element, priorityLevel) => {
   let priorityColor;
 
   if (priorityLevel === 'green') {
-    priorityColor = '#2A9D8F'
+    priorityColor = 'invert(95%) sepia(95%) saturate(565%) hue-rotate(44deg) brightness(87%) contrast(88%)'
   } else if (priorityLevel === 'orange') {
-    priorityColor = '#F4A261'
+    priorityColor = 'invert(79%) sepia(80%) saturate(563%) hue-rotate(320deg) brightness(90%) contrast(110%)'
   } else if (priorityLevel === 'red') {
-    priorityColor = '#E76F51';
+    priorityColor = 'invert(50%) sepia(40%) saturate(881%) hue-rotate(314deg) brightness(104%) contrast(110%)';
   } else {
-    priorityColor = '#E9C46A';
+    priorityColor = 'invert(76%) sepia(60%) saturate(350%) hue-rotate(360deg) brightness(103%) contrast(95%)';
   }
   
-  element.style.borderColor = priorityColor
+  element.style.filter = priorityColor
 }
 
 const _userReadablePriority = (priority) => {
@@ -59,13 +59,13 @@ const _todoContainerExpanded = (container, item) => {
   description.classList.add('todo-item-description');
   container.appendChild(description);
 
-  let priorityLevel = document.createElement('span');
+  let priorityLevel = document.createElement('div');
   priorityLevel.textContent = `Priority: ${_userReadablePriority(item.priorityLevel)}`;
   priorityLevel.classList.add('todo-item-priority');
   container.appendChild(priorityLevel);
 
   if (item.isComplete === false && item.dueDate !== null) {
-    let dueDate = document.createElement('span');
+    let dueDate = document.createElement('div');
     dueDate.textContent = `Due: ${format(new Date(item.dueDate),'EEE L/dd')} `
     dueDate.classList.add('todo-item-due-date');
     container.appendChild(dueDate);
@@ -100,11 +100,11 @@ const _todoContainerContracted = (container, item) => {
     container.appendChild(complete);
   }
 
-  let title = document.createElement('span');
+  let title = document.createElement('div');
   title.textContent = item.title;
   container.appendChild(title);
 
-  let category = document.createElement('span');
+  let category = document.createElement('div');
   category.classList.add('todo-item-category');
   category.textContent = item.category;
   container.appendChild(category);
@@ -122,11 +122,17 @@ const _todoContainerContracted = (container, item) => {
   }
 
   if (item.isComplete === false && item.dueDate !== null) {
-    let dueDate = document.createElement('span');
+    let dueDate = document.createElement('div');
     dueDate.classList.add('todo-item-due-days');
     dueDate.textContent = daysUntilDue(item.dueDate);
     container.appendChild(dueDate);
   }
+
+  let color = document.createElement('img');
+  color.src = '../src/assets/circle.png';
+  color.classList.add('todo-item-priority-circle');
+  container.appendChild(color);
+  _setColorByPriority(color, item.priorityLevel);
 
   // Haven't implemented this feature yet
 
@@ -156,7 +162,6 @@ const displayItems = (itemsArray) => {
   itemsArray.forEach(item => {
     let container = document.createElement('div');
     container.classList.add('todo-item-container');
-    _setColorByPriority(container, item.priorityLevel);
     _toggleExpandContractView(container, item);
     displayItemsContainer.appendChild(container);
   })
