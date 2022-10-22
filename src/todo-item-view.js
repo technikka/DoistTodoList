@@ -128,10 +128,12 @@ const _todoContainerContracted = (container, item) => {
   category.textContent = item.category;
   container.appendChild(category);
 
-  let editIcon = document.createElement('img');
-  editIcon.src = '../src/assets/square-edit-outline.png';
-  editIcon.title = 'Edit this item'
-  container.appendChild(editIcon);
+  // Haven't implemented this feature yet
+
+  // let editIcon = document.createElement('img');
+  // editIcon.src = '../src/assets/square-edit-outline.png';
+  // editIcon.title = 'Edit this item'
+  // container.appendChild(editIcon);
 
   _displayExpandContractIcon(container, item);
 }
@@ -184,8 +186,6 @@ const filterByCategory = (category) => {
   const heading = document.querySelector('#content > header > h2');
   if (heading) {
     heading.textContent = category ;
-    const btn = document.querySelector('#content > header > img');
-    btn.title = `Add item to ${category}`;
   } else {
     createListHeader(content, category);
   }

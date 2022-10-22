@@ -19,7 +19,11 @@ const createForm = () => {
     }
   }
 
-  document.addEventListener('click', (closeOnClickAway));
+  document.addEventListener('click', (event) => {
+    if (container.classList.contains('show')) {
+      closeOnClickAway(event);
+    }
+  });
 
   addExitBtn(container);
 

@@ -160,7 +160,7 @@ body > header span {
   z-index: 5;
   border: 1px solid black;
   position: fixed;
-  top: 0%;
+  top: 0;
   left: 50%;
   transform-origin: center;
   transform: translate(-50%, -80%);
@@ -175,7 +175,7 @@ body > header span {
 .new-category-modal.show {
   opacity: 100%;
   pointer-events: all;
-  top: 10%;
+  top: 50px;
 }
 
 .new-category-modal input {
