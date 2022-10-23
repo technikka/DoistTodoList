@@ -217,6 +217,17 @@ body > header span {
   pointer-events: all;
 }
 
+.add-item-container form {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 20px;
+  border: none;
+}
+
+.add-item-container legend {
+  font-weight: bold;
+}
+
 .add-item-container img {
   filter: invert(80%);
   float: right;
@@ -228,18 +239,8 @@ body > header span {
   cursor: pointer;
 } 
 
-/* .add-item-container legend {
 
-} */
-
-.add-item-container fieldset {
-  display: flex;
-  flex-flow: column wrap;
-  gap: 20px;
-  border: none;
-}
-
-.add-item-container fieldset div {
+.add-item-container form div {
   display: flex;
   flex-flow: row wrap;
   gap: 10px;

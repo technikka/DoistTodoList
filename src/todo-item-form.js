@@ -30,26 +30,23 @@ const createForm = () => {
   let form = document.createElement('form');
   container.appendChild(form);
 
-  let fieldset = document.createElement('fieldset');
-  form.appendChild(fieldset);
-
   let legend = document.createElement('legend');
   legend.textContent = 'Add an item to your list';
-  fieldset.appendChild(legend);
+  form.appendChild(legend);
 
   // add title property input
-  fieldset.appendChild(_createInput('text', { textContent: 'Title', for: 'title'}));
+  form.appendChild(_createInput('text', { textContent: 'Title', for: 'title'}));
   // add description property input
-  fieldset.appendChild(_createTextArea({ textContent: 'Description', for: 'description'}, { "cols": "30", "rows": "8"}));
+  form.appendChild(_createTextArea({ textContent: 'Description', for: 'description'}, { "cols": "30", "rows": "8"}));
   // add dueDate property input
-  fieldset.appendChild(_createInput('date', { textContent: 'Due Date', for: 'dueDate'}));
+  form.appendChild(_createInput('date', { textContent: 'Due Date', for: 'dueDate'}));
   // add priorityLevel property input
-  fieldset.appendChild(_createSelect({ textContent: 'Priority', for: 'priorityLevel'}, {"green": "Low Priority", "yellow": "Normal Priority", "orange": "Somewhat Priority", "red": "High Priority"}, "yellow"));
+  form.appendChild(_createSelect({ textContent: 'Priority', for: 'priorityLevel'}, {"green": "Low Priority", "yellow": "Normal Priority", "orange": "Somewhat Priority", "red": "High Priority"}, "yellow"));
 
   // add category property input
   let defaultCategory = 'General';
   const categoryContainer = _createSelect({ textContent: 'Category', for: 'category'}, categoriesSelectOptions(), defaultCategory)
-  fieldset.appendChild(categoryContainer);
+  form.appendChild(categoryContainer);
 
   let inputContainer = document.createElement('div');
   inputContainer.classList.add('in-form-add-category');
@@ -76,7 +73,7 @@ const createForm = () => {
   const btn = document.createElement('button');
   btn.textContent = 'Add';
   btn.classList.add('btn-add-item');
-  fieldset.appendChild(btn);
+  form.appendChild(btn);
   btn.addEventListener('click', createItem);
 }
 

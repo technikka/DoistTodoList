@@ -22,6 +22,19 @@ const addToCompletedItems = (item) => {
   completedItems.push(item);
 }
 
+const _removeFromCompletedItems = (item) => {
+  for (let i=0; i < completedItems.length; i++) {
+    if (completedItems[i] === item) {
+      completedItems.splice(i, 1);
+    }
+  }
+}
+
+const _removeCompletedFromStorage = (item) => {
+  let key = `completedItem${item.id}`
+  localStorage.removeItem(key);
+}
+
 const getItems = (category) => {
   if (category !== undefined) {
     return todoItems.filter(item => item.category === category);
@@ -156,8 +169,14 @@ const createItem = () => {
 }
 
 const deleteItem = (item) => {
-  _removeFromTodoItems(item);
-  _removeTodoFromStorage(item);
+  if (item.isComplete === true) {
+    _removeFromCompletedItems(item)
+    _removeCompletedFromStorage(item)
+  } else {
+    _removeFromTodoItems(item);
+    _removeTodoFromStorage(item);
+  }
+  
 }
 
 export { todoItem, createItem, getItems, parseStoredItems, sortByDate, sortByPriority, deleteItem, getCompletedItems, markItemComplete, parseStoredCompleted }
