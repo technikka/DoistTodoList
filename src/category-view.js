@@ -42,10 +42,14 @@ const showCategoryModal = () => {
 
   const closeOnClickAway = (event) => {
     const dropdownItems = document.getElementsByClassName('dropdown-item');
+
     for (let i=0; i < dropdownItems.length; i++) {
       if (dropdownItems[i] === event.target) {
         return
       }
+    }
+    if (!modal.classList.contains('show')) {
+      return
     }
     if (!modal.contains(event.target) && modal != event.target) {
       modal.classList.remove('show');
