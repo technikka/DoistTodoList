@@ -199,15 +199,15 @@ body > header span {
 }
 
 .add-item-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   background-color: white;
   border: 1px solid black;
   border-radius: 5px;
   padding: 10px;
   z-index: 5;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   pointer-events: none;
   opacity: 0%;
 }
@@ -218,10 +218,12 @@ body > header span {
 }
 
 .add-item-container form {
-  display: flex;
+  /* display: flex;
   flex-flow: column wrap;
-  gap: 20px;
+  gap: 20px; */
   border: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .add-item-container legend {

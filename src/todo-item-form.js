@@ -25,8 +25,6 @@ const createForm = () => {
     }
   });
 
-  addExitBtn(container);
-
   let form = document.createElement('form');
   container.appendChild(form);
 
@@ -34,41 +32,16 @@ const createForm = () => {
   legend.textContent = 'Add an item to your list';
   form.appendChild(legend);
 
-  // add title property input
-  form.appendChild(_createInput('text', { textContent: 'Title', for: 'title'}));
-  // add description property input
-  form.appendChild(_createTextArea({ textContent: 'Description', for: 'description'}, { "cols": "30", "rows": "8"}));
-  // add dueDate property input
-  form.appendChild(_createInput('date', { textContent: 'Due Date', for: 'dueDate'}));
-  // add priorityLevel property input
-  form.appendChild(_createSelect({ textContent: 'Priority', for: 'priorityLevel'}, {"green": "Low Priority", "yellow": "Normal Priority", "orange": "Somewhat Priority", "red": "High Priority"}, "yellow"));
+  addExitBtn(form);
 
-  // add category property input
+  _createInput('text', { textContent: 'Title', for: 'title'});
+  _createTextArea({ textContent: 'Description', for: 'description'}, { "cols": "30", "rows": "8"});
+  _createInput('date', { textContent: 'Due Date', for: 'dueDate'});
+  _createSelect({ textContent: 'Priority', for: 'priorityLevel'}, {"green": "Low Priority", "yellow": "Normal Priority", "orange": "Somewhat Priority", "red": "High Priority"}, "yellow");
+
   let defaultCategory = 'General';
-  const categoryContainer = _createSelect({ textContent: 'Category', for: 'category'}, categoriesSelectOptions(), defaultCategory)
-  form.appendChild(categoryContainer);
-
-  let inputContainer = document.createElement('div');
-  inputContainer.classList.add('in-form-add-category');
-
-  let input = document.createElement('input');
-  input.placeholder = 'New Category Name';
-  input.name = 'category';
-
-  inputContainer.appendChild(input);
-
-  categoryContainer.appendChild(inputContainer);
-
-  const categories = document.getElementById('category');
-  categories?.addEventListener('change', function() {
-    if (this.value === 'Create New') {
-      inputContainer.classList.toggle('show');
-    } else {
-      if (inputContainer.classList.contains('show')) {
-        inputContainer.classList.remove('show');
-      }
-    }
-  })
+  _createSelect({ textContent: 'Category', for: 'category'}, categoriesSelectOptions(), defaultCategory)
+  _createCategoryInput();
 
   const btn = document.createElement('button');
   btn.textContent = 'Add';
@@ -92,12 +65,12 @@ const _addLabel = (parent, properties) => {
   let label = document.createElement('label');
   label.textContent = properties.textContent;
   label.setAttribute('for', properties.for);
-  parent.appendChild(label);
+  parent?.appendChild(label);
 }
 
 const _createInput = (inputType, inputLabel, inputProperties) => {
-  let container = document.createElement('div');
-  _addLabel(container, inputLabel);
+  let form = document.querySelector('form');
+  _addLabel(form, inputLabel);
 
   let input = document.createElement('input');
   input.type = inputType;
@@ -107,14 +80,12 @@ const _createInput = (inputType, inputLabel, inputProperties) => {
       input.setAttribute(key, value);
     }
   }
-  container.appendChild(input);
-
-  return container;
+  form?.appendChild(input);
 }
 
 const _createTextArea = (areaLabel, areaProperties) => {
-  let container = document.createElement('div');
-  _addLabel(container, areaLabel);
+  let form = document.querySelector('form');
+  _addLabel(form, areaLabel);
 
   let area = document.createElement('textarea');
   area.name = areaLabel.for;
@@ -123,9 +94,7 @@ const _createTextArea = (areaLabel, areaProperties) => {
       area.setAttribute(key, value);
     }
   }
-  container.appendChild(area);
-
-  return container;
+  form?.appendChild(area);
 }
 
 const categoriesSelectOptions = (selectDefault) => {
@@ -155,17 +124,40 @@ const addSelectOptions = (select, selectOptions, selectDefault) => {
 
 // add selectDefault option with name attr to make option.selected = true
 const _createSelect = (selectLabel, selectOptions, selectDefault) => {
-  let container = document.createElement('div');
-  _addLabel(container, selectLabel);
+  let form = document.querySelector('form');
+  _addLabel(form, selectLabel);
 
   let select = document.createElement('select');
   select.name = selectLabel.for;
   select.id = select.name;
-  container.appendChild(select);
+  form?.appendChild(select);
 
   addSelectOptions(select, selectOptions, selectDefault);
+}
 
-  return container;
+const _createCategoryInput = () => {
+  let form = document.querySelector('form');
+  let inputContainer = document.createElement('div');
+  inputContainer.classList.add('in-form-add-category');
+
+  let input = document.createElement('input');
+  input.placeholder = 'New Category Name';
+  input.name = 'category';
+
+  inputContainer.appendChild(input);
+
+  form?.appendChild(inputContainer);
+
+  const categories = document.getElementById('category');
+  categories?.addEventListener('change', function() {
+    if (this.value === 'Create New') {
+      inputContainer.classList.toggle('show');
+    } else {
+      if (inputContainer.classList.contains('show')) {
+        inputContainer.classList.remove('show');
+      }
+    }
+  })
 }
 
 const displayForm = () => {
