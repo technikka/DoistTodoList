@@ -29,13 +29,13 @@ const createForm = () => {
   container.appendChild(form);
 
   let legend = document.createElement('legend');
-  legend.textContent = 'Add an item to your list';
+  legend.textContent = 'Create New Task';
   form.appendChild(legend);
 
   addExitBtn(form);
 
   _createInput('text', { textContent: 'Title', for: 'title'});
-  _createTextArea({ textContent: 'Description', for: 'description'}, { "cols": "30", "rows": "8"});
+  _createTextArea({ textContent: 'Description', for: 'description'}, { "cols": "20", "rows": "8"});
   _createInput('date', { textContent: 'Due Date', for: 'dueDate'});
   _createSelect({ textContent: 'Priority', for: 'priorityLevel'}, {"green": "Low Priority", "yellow": "Normal Priority", "orange": "Somewhat Priority", "red": "High Priority"}, "yellow");
 
@@ -56,7 +56,7 @@ const addExitBtn = (parent) => {
   btn.title = 'Close Form';
   parent.appendChild(btn);
   btn.addEventListener('click', () => {
-    parent.classList.remove('show');
+    document.querySelector('.add-item-container').classList.remove('show');
     document.getElementById('backdrop').classList.remove('show');
   })
 }
