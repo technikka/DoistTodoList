@@ -1,7 +1,6 @@
 import { getCategories } from './category'
 import { createItem } from './todo-item'
 
-// can pass object to set form fields to specific values.
 const createForm = () => {
   let content = document.querySelector('#content');
 

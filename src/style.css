@@ -219,9 +219,8 @@ body > header span {
   border: none;
   display: grid;
   grid-gap: 10px;
-  grid-auto-columns: minmax(0, 1fr);
-  grid-auto-flow: column;
   align-items: center;
+  padding: 10px;
 }
 
 .add-item-container legend {
@@ -234,6 +233,7 @@ body > header span {
 .add-item-container img {
   grid-area: 1 / 3;
   justify-self: end;
+  align-self: start;
   filter: invert(80%);
   float: right;
   width: 30px;
@@ -263,11 +263,13 @@ form :nth-child(8) {
 .add-item-container select {
   grid-column-start: 2;
   grid-column-end: span 1;
+  min-width: 120px;
 }
 
 .add-item-container button {
   grid-column-start: 3;
   grid-row-start: 7;
+  justify-self: end;
 }
 
 .add-item-container img:hover {
