@@ -44,7 +44,7 @@ const createForm = () => {
   _createCategoryInput();
 
   const btn = document.createElement('button');
-  btn.textContent = 'Add';
+  btn.textContent = 'Create';
   btn.classList.add('btn-add-item');
   form.appendChild(btn);
   btn.addEventListener('click', createItem);

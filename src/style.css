@@ -165,28 +165,26 @@ body > header span {
 
 .new-category-modal {
   z-index: 5;
-  border: 1px solid black;
-  position: fixed;
-  top: 0;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  position: absolute;
   left: 50%;
-  transform-origin: center;
-  transform: translate(-50%, -80%);
+  top: 25%;
+  transform: translate(-50%, -50%);
   pointer-events: none;
   opacity: 0%;
-  padding: 10px 20px;
+  padding: 25px;
   background: white;
-
-  transition: top 0.3s, opacity 0.3s;
+  border-radius: 5px;
 }
 
 .new-category-modal.show {
   opacity: 100%;
   pointer-events: all;
-  top: 50px;
 }
 
 .new-category-modal input {
-  margin: 0 20px 0 5px;
+  margin: 0 20px 0 10px;
+
 }
 
 .btn-todoItem-form {
@@ -201,10 +199,10 @@ body > header span {
 .add-item-container {
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 25%;
   transform: translate(-50%, -50%);
   background-color: white;
-  border: 1px solid black;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 5px;
   padding: 10px;
   z-index: 5;
