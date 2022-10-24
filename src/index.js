@@ -5,6 +5,7 @@ import { showAllTodos} from './todo-item-view'
 import { createForm } from './todo-item-form'
 import { createSidebar } from './side-bar-view'
 import { format } from 'date-fns'
+import './style.css'
 
 const setEventListeners = () => {
   const categoryTab = document.querySelector('.category-tab');
