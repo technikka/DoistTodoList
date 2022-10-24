@@ -1,5 +1,6 @@
 import { getCategories } from './category'
 import { createItem } from './todo-item'
+import CloseBtn from '../src/assets/close-thick.png'
 
 const createForm = () => {
   let content = document.querySelector('#content');
@@ -51,7 +52,7 @@ const createForm = () => {
 
 const addExitBtn = (parent) => {
   let btn = document.createElement('img');
-  btn.src = '../src/assets/close-thick.png';
+  btn.src = CloseBtn;
   btn.title = 'Close Form';
   parent.appendChild(btn);
   btn.addEventListener('click', () => {

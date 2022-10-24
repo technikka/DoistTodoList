@@ -1,5 +1,10 @@
 import { getItems, sortByDate, sortByPriority, deleteItem, markItemComplete, getCompletedItems } from './todo-item'
 import { differenceInDays, format } from 'date-fns'
+import ExpandIcon from '../src/assets/arrow-expand-down.png'
+import ContractIcon from '../src/assets/arrow-expand-up.png'
+import DeleteIcon from '../src/assets/delete-forever-outline.png'
+import CheckboxIcon from '../src/assets/checkbox-blank-outline.png'
+import CheckedBoxIcon from '../src/assets/checkbox-marked-outline.png'
 
 let currentlyShowing = [];
 
@@ -41,10 +46,10 @@ const _displayExpandContractIcon = (container, item) => {
   let icon = document.createElement('img');
   icon.classList.add('expand-contract-icon');
   if (container.classList.contains('contracted')) {
-    icon.src = '../src/assets/arrow-expand-down.png';
+    icon.src = ExpandIcon;
     icon.title = 'Expand View';
   } else {
-    icon.src = '../src/assets/arrow-expand-up.png';
+    icon.src = ContractIcon;
     icon.title = 'Contract View';
   }
   icon.addEventListener('click', () => {
@@ -72,7 +77,7 @@ const _todoContainerExpanded = (container, item) => {
   }
 
   let delIcon = document.createElement('img');
-  delIcon.src = '../src/assets/delete-forever-outline.png';
+  delIcon.src = DeleteIcon;
   delIcon.title = 'Delete Item';
   delIcon.classList.add('todo-item-delete');
   container.appendChild(delIcon);
@@ -85,7 +90,7 @@ const _todoContainerExpanded = (container, item) => {
 const _todoContainerContracted = (container, item) => {
   if (item.isComplete === false) {
     let markComplete = document.createElement('img');
-    markComplete.src = '../src/assets/checkbox-blank-outline.png';
+    markComplete.src = CheckboxIcon;
     markComplete.classList.add('todo-item-complete-btn');
     markComplete.title = 'Mark Complete';
     container.appendChild(markComplete);
@@ -95,7 +100,7 @@ const _todoContainerContracted = (container, item) => {
     })
   } else {
     let complete = document.createElement('img');
-    complete.src = '../src/assets/checkbox-marked-outline.png';
+    complete.src = CheckedBoxIcon;
     complete.classList.add('todo-item-complete-btn');
     container.appendChild(complete);
   }
